@@ -5,6 +5,7 @@
  */
 package com.blogspot.gameeaterpl.ui;
 
+import com.blogspot.gameeaterpl.ui.panels.AttributesPointsPanel;
 import com.blogspot.gameeaterpl.character.Ability;
 import com.blogspot.gameeaterpl.dataWrappers.MutableInteger;
 

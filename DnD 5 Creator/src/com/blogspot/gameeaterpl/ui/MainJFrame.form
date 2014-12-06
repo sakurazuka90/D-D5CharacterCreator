@@ -130,7 +130,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="com.blogspot.gameeaterpl.ui.CreationStepsPanel" name="creationStepsPanel1">
+    <Component class="com.blogspot.gameeaterpl.ui.panels.CreationStepsPanel" name="creationStepsPanel1">
     </Component>
   </SubComponents>
 </Form>

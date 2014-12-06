@@ -36,7 +36,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         nextButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        creationStepsPanel1 = new com.blogspot.gameeaterpl.ui.CreationStepsPanel();
+        creationStepsPanel1 = new com.blogspot.gameeaterpl.ui.panels.CreationStepsPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -169,7 +169,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.blogspot.gameeaterpl.ui.CardLayout cardLayout1;
-    private com.blogspot.gameeaterpl.ui.CreationStepsPanel creationStepsPanel1;
+    private com.blogspot.gameeaterpl.ui.panels.CreationStepsPanel creationStepsPanel1;
     private javax.swing.JButton jButton2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
