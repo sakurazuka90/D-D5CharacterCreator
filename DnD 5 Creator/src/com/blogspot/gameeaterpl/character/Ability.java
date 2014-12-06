@@ -30,7 +30,12 @@ public class Ability {
         mModifier = calculateModifier(mScore);
     }
 
-    private Integer calculateModifier(Integer pmScore) {
+    /**
+     * Liczy modyfikator atrybutu według wzoru (wartosc-10)/2.
+     * @param pmScore
+     * @return 
+     */
+    public static Integer calculateModifier(Integer pmScore) {
         Integer lvSimpleScore;
         if (pmScore % 2 == 0) {
             lvSimpleScore = pmScore;
@@ -60,6 +65,11 @@ public class Ability {
 
     public Integer getmModifier() {
         return mModifier;
+    }
+    
+    public String getTestString()
+    {
+        return mScore.toString() + " " + mModifier.toString();
     }
     
     

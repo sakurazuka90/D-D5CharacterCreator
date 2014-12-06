@@ -34,7 +34,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         cardLayout1 = new com.blogspot.gameeaterpl.ui.CardLayout();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         creationStepsPanel1 = new com.blogspot.gameeaterpl.ui.CreationStepsPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -45,13 +45,13 @@ public class MainJFrame extends javax.swing.JFrame {
         setTitle("DnD 5 Character Creator");
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jButton1.setText("Next");
-        jButton1.setMaximumSize(new java.awt.Dimension(71, 29));
-        jButton1.setMinimumSize(new java.awt.Dimension(71, 29));
-        jButton1.setPreferredSize(new java.awt.Dimension(71, 29));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        nextButton.setText("Next");
+        nextButton.setMaximumSize(new java.awt.Dimension(71, 29));
+        nextButton.setMinimumSize(new java.awt.Dimension(71, 29));
+        nextButton.setPreferredSize(new java.awt.Dimension(71, 29));
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
@@ -70,14 +70,14 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(0, 143, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)))
         );
 
@@ -123,14 +123,14 @@ public class MainJFrame extends javax.swing.JFrame {
         creationStepsPanel1.flipListPrevious();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
 
         cardLayout1.fillCharacterObject(mCharacter);    //wypełnij obiekt danymi
         cardLayout1.flipCardsNext();    //przerzuć kartę
         creationStepsPanel1.flipListNext(); //zmień pozycję w menu bocznym
 
         mCharacter.printDataTest();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_nextButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,11 +170,11 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.blogspot.gameeaterpl.ui.CardLayout cardLayout1;
     private com.blogspot.gameeaterpl.ui.CreationStepsPanel creationStepsPanel1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton nextButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,18 +33,18 @@ public class CardLayout extends javax.swing.JPanel {
     private void initComponents() {
 
         mainInfoPanel1 = new com.blogspot.gameeaterpl.ui.MainInfoPanel();
-        atributesPanel1 = new com.blogspot.gameeaterpl.ui.AtributesPanel();
+        attributesTabbedPanel1 = new com.blogspot.gameeaterpl.ui.AttributesTabbedPanel();
         raceChosePanel1 = new com.blogspot.gameeaterpl.ui.RaceChosePanel();
 
         setLayout(new java.awt.CardLayout());
         add(mainInfoPanel1, "card2");
-        add(atributesPanel1, "card4");
+        add(attributesTabbedPanel1, "card4");
         add(raceChosePanel1, "card3");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.blogspot.gameeaterpl.ui.AtributesPanel atributesPanel1;
+    private com.blogspot.gameeaterpl.ui.AttributesTabbedPanel attributesTabbedPanel1;
     private com.blogspot.gameeaterpl.ui.MainInfoPanel mainInfoPanel1;
     private com.blogspot.gameeaterpl.ui.RaceChosePanel raceChosePanel1;
     // End of variables declaration//GEN-END:variables
@@ -79,6 +79,9 @@ public class CardLayout extends javax.swing.JPanel {
         {
             case 0:
                 mainInfoPanel1.fillCharacterObject(pmCharacter);
+                break;
+            case 1:
+                attributesTabbedPanel1.fillCharacterObject(pmCharacter);
                 break;
             default:
                 break;
