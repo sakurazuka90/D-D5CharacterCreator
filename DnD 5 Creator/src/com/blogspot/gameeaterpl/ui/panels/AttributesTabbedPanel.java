@@ -30,22 +30,11 @@ public class AttributesTabbedPanel extends javax.swing.JPanel implements Charact
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        attributesFillPanel1 = new com.blogspot.gameeaterpl.ui.panels.AttributesFillPanel();
+        attributesFillPanel2 = new com.blogspot.gameeaterpl.ui.panels.AttributesFillPanel();
         atributesPanel1 = new com.blogspot.gameeaterpl.ui.panels.AtributesPanel();
         attributesPointsPanel1 = new com.blogspot.gameeaterpl.ui.panels.AttributesPointsPanel();
 
-        javax.swing.GroupLayout attributesFillPanel1Layout = new javax.swing.GroupLayout(attributesFillPanel1);
-        attributesFillPanel1.setLayout(attributesFillPanel1Layout);
-        attributesFillPanel1Layout.setHorizontalGroup(
-            attributesFillPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
-        );
-        attributesFillPanel1Layout.setVerticalGroup(
-            attributesFillPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 311, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Fill Scores", attributesFillPanel1);
+        jTabbedPane1.addTab("Fill Scores", attributesFillPanel2);
         jTabbedPane1.addTab("Generate Scores", atributesPanel1);
         jTabbedPane1.addTab("Distribute Points", attributesPointsPanel1);
 
@@ -64,7 +53,7 @@ public class AttributesTabbedPanel extends javax.swing.JPanel implements Charact
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.blogspot.gameeaterpl.ui.panels.AtributesPanel atributesPanel1;
-    private com.blogspot.gameeaterpl.ui.panels.AttributesFillPanel attributesFillPanel1;
+    private com.blogspot.gameeaterpl.ui.panels.AttributesFillPanel attributesFillPanel2;
     private com.blogspot.gameeaterpl.ui.panels.AttributesPointsPanel attributesPointsPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables

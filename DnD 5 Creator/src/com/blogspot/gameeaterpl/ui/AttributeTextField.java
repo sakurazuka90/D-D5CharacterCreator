@@ -25,5 +25,12 @@ public class AttributeTextField extends JTextField {
         this.setFocusable(false);
     }
     
+    public AttributeTextField(String pmText, boolean pmEditable) {
+        this.setEditable(pmEditable);
+        this.setText(pmText);
+        this.setSize(35, 27);
+        this.setFocusable(pmEditable);
+    }
+    
     
 }
