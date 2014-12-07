@@ -5,6 +5,9 @@
  */
 package com.blogspot.gameeaterpl.ui.panels;
 
+import com.blogspot.gameeaterpl.character.Races;
+import com.blogspot.gameeaterpl.character.Subraces;
+import java.util.ArrayList;
 /**
  *
  * @author sakurazuka
@@ -28,8 +31,40 @@ public class RaceChosePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
+        raceDescriptionPanel1 = new com.blogspot.gameeaterpl.ui.panels.RaceDescriptionPanel();
 
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel1.setText("Races");
+
+        jLabel2.setText("Race:");
+
+        ArrayList<String> lvTempNamesList = new ArrayList<String>();
+
+        for(Races al : Races.values())
+        {
+            lvTempNamesList.add(al.toString());
+        }
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(lvTempNamesList.toArray()));
+
+        jButton1.setText(">>");
+
+        jLabel3.setText("Subrace:");
+
+        ArrayList<String> lvTempNamesSubraceList = new ArrayList<String>();
+
+        for(Subraces al : Subraces.values())
+        {
+            lvTempNamesSubraceList.add(al.toString());
+        }
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(lvTempNamesSubraceList.toArray()));
+
+        jButton2.setText(">>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -37,20 +72,56 @@ public class RaceChosePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(raceDescriptionPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(raceDescriptionPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private com.blogspot.gameeaterpl.ui.panels.RaceDescriptionPanel raceDescriptionPanel1;
     // End of variables declaration//GEN-END:variables
 }
