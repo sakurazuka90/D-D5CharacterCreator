@@ -5,15 +5,18 @@
  */
 package com.blogspot.gameeaterpl.ui.panels;
 
-import java.awt.Graphics;
+import com.blogspot.gameeaterpl.character.Races;
+import java.awt.Color;
 import java.awt.Dimension;
-import java.io.File;
-import javax.imageio.ImageIO;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.awt.Color;
+import javax.imageio.ImageIO;
+
 
 /**
  *
@@ -21,19 +24,45 @@ import java.awt.Color;
  */
 public class RaceDescriptionPanel extends javax.swing.JPanel {
 
-    private String mBackgroundUrl = "/com/blogspot/gameeaterpl/ui/panels/images/rElf.jpg";
+    HashMap<Races,String> mPictureLinks;
+    private final String mBackgroundUrl = "/com/blogspot/gameeaterpl/ui/panels/images/";
     BufferedImage img;
+    File mFile;
 
     /**
      * Creates new form RaceDescriptionPanel
      */
     public RaceDescriptionPanel() {
+        
+        initializePictureLinks();
         try {
-           img = ImageIO.read(getClass().getResource(mBackgroundUrl));
+           img = ImageIO.read(getClass().getResource(mPictureLinks.get(Races.DWARF)));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         initComponents();
+    }
+    
+    //public RaceDescriptionPanel(String)
+    
+    private void initializePictureLinks()
+    {
+        mPictureLinks = new HashMap<>();
+        mPictureLinks.put(Races.ELF, mBackgroundUrl+"rElf.jpg");
+        mPictureLinks.put(Races.DWARF, mBackgroundUrl + "rDwarf.jpg");
+        mPictureLinks.put(Races.HALFLING, mBackgroundUrl + "rHalfling.jpg");
+    }
+    
+    public void switchDescription(Races pmRace)
+    {
+        try {
+           img = ImageIO.read(getClass().getResource(mPictureLinks.get(pmRace)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        this.repaint();
     }
 
     @Override
@@ -45,6 +74,8 @@ public class RaceDescriptionPanel extends javax.swing.JPanel {
         }
     }
 
+    
+    
     @Override
     protected void paintComponent(Graphics g) {
 

@@ -32,8 +32,8 @@ public class RaceChosePanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        racesComboBox = new javax.swing.JComboBox();
+        showPictureButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
@@ -44,15 +44,25 @@ public class RaceChosePanel extends javax.swing.JPanel {
 
         jLabel2.setText("Race:");
 
-        ArrayList<String> lvTempNamesList = new ArrayList<String>();
+        ArrayList<Races> lvTempNamesList = new ArrayList<>();
 
         for(Races al : Races.values())
         {
-            lvTempNamesList.add(al.toString());
+            lvTempNamesList.add(al);
         }
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(lvTempNamesList.toArray()));
+        racesComboBox.setModel(new javax.swing.DefaultComboBoxModel(lvTempNamesList.toArray()));
+        racesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                racesComboBoxActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText(">>");
+        showPictureButton.setText(">>");
+        showPictureButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPictureButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Subrace:");
 
@@ -80,9 +90,9 @@ public class RaceChosePanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(racesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(showPictureButton))
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(raceDescriptionPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -97,8 +107,8 @@ public class RaceChosePanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(racesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(showPictureButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,15 +123,23 @@ public class RaceChosePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void showPictureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPictureButtonActionPerformed
+        raceDescriptionPanel1.switchDescription((Races) racesComboBox.getSelectedItem());
+    }//GEN-LAST:event_showPictureButtonActionPerformed
+
+    private void racesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_racesComboBoxActionPerformed
+        System.out.println(racesComboBox.getSelectedItem().toString());
+    }//GEN-LAST:event_racesComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private com.blogspot.gameeaterpl.ui.panels.RaceDescriptionPanel raceDescriptionPanel1;
+    private javax.swing.JComboBox racesComboBox;
+    private javax.swing.JButton showPictureButton;
     // End of variables declaration//GEN-END:variables
 }
