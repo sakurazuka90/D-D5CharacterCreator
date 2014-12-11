@@ -8,17 +8,57 @@ package com.blogspot.gameeaterpl.ui.panels;
 import com.blogspot.gameeaterpl.character.Races;
 import com.blogspot.gameeaterpl.character.Subraces;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  *
  * @author sakurazuka
  */
 public class RaceChosePanel extends javax.swing.JPanel {
 
+    HashMap<Races, ArrayList<Subraces>> mSubraceToRaceConnection;
+
     /**
      * Creates new form RaceChosePanel
      */
     public RaceChosePanel() {
+
+        initSubraces();
         initComponents();
+    }
+
+    private void initSubraces() {
+
+        ArrayList<Subraces> lvTempList = new ArrayList<>();
+        mSubraceToRaceConnection = new HashMap<>();
+
+        lvTempList.add(Subraces.MOUNTAINDWARF);
+        lvTempList.add(Subraces.HIGHELF);
+        mSubraceToRaceConnection.put(Races.DWARF, lvTempList);
+
+        lvTempList = new ArrayList<>();
+        lvTempList.add(Subraces.LOGHTFOOTHALFLING);
+        lvTempList.add(Subraces.STOUTHALFLING);
+        mSubraceToRaceConnection.put(Races.HALFLING, lvTempList);
+
+        lvTempList = new ArrayList<>();
+        lvTempList.add(Subraces.ROCKGNOME);
+        lvTempList.add(Subraces.FORESTGNOME);
+        mSubraceToRaceConnection.put(Races.GNOME, lvTempList);
+
+        lvTempList = new ArrayList<>();
+        lvTempList.add(Subraces.HIGHELF);
+        lvTempList.add(Subraces.WOODELF);
+        lvTempList.add(Subraces.DARKELF);
+        mSubraceToRaceConnection.put(Races.ELF, lvTempList);
+
+        lvTempList = new ArrayList<>();
+        lvTempList.add(Subraces.NONE);
+        mSubraceToRaceConnection.put(Races.DRAGONBORN, lvTempList);
+        mSubraceToRaceConnection.put(Races.HALFORC, lvTempList);
+        mSubraceToRaceConnection.put(Races.HALFELF, lvTempList);
+        mSubraceToRaceConnection.put(Races.HUMAN, lvTempList);
+        mSubraceToRaceConnection.put(Races.TIEFLING, lvTempList);
     }
 
     /**
@@ -35,7 +75,7 @@ public class RaceChosePanel extends javax.swing.JPanel {
         racesComboBox = new javax.swing.JComboBox();
         showPictureButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        subracesComboBox = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
         raceDescriptionPanel1 = new com.blogspot.gameeaterpl.ui.panels.RaceDescriptionPanel();
 
@@ -51,6 +91,7 @@ public class RaceChosePanel extends javax.swing.JPanel {
             lvTempNamesList.add(al);
         }
         racesComboBox.setModel(new javax.swing.DefaultComboBoxModel(lvTempNamesList.toArray()));
+        racesComboBox.setSelectedItem(Races.DWARF);
         racesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 racesComboBoxActionPerformed(evt);
@@ -66,13 +107,7 @@ public class RaceChosePanel extends javax.swing.JPanel {
 
         jLabel3.setText("Subrace:");
 
-        ArrayList<String> lvTempNamesSubraceList = new ArrayList<String>();
-
-        for(Subraces al : Subraces.values())
-        {
-            lvTempNamesSubraceList.add(al.toString());
-        }
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(lvTempNamesSubraceList.toArray()));
+        subracesComboBox.setModel(new javax.swing.DefaultComboBoxModel(mSubraceToRaceConnection.get((Races)racesComboBox.getSelectedItem()).toArray()));
 
         jButton2.setText(">>");
 
@@ -84,7 +119,7 @@ public class RaceChosePanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(subracesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
                     .addComponent(jLabel1)
@@ -113,7 +148,7 @@ public class RaceChosePanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(subracesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -128,18 +163,26 @@ public class RaceChosePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_showPictureButtonActionPerformed
 
     private void racesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_racesComboBoxActionPerformed
-        System.out.println(racesComboBox.getSelectedItem().toString());
+        ArrayList<Subraces> lvSelectedList = mSubraceToRaceConnection.get((Races)racesComboBox.getSelectedItem());
+        subracesComboBox.setModel(new javax.swing.DefaultComboBoxModel(lvSelectedList.toArray()));
+        if(lvSelectedList.size()==1)
+        {
+            subracesComboBox.setEnabled(false);
+        }else{
+            if(!subracesComboBox.isEnabled())
+                subracesComboBox.setEnabled(true);
+        }
     }//GEN-LAST:event_racesComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private com.blogspot.gameeaterpl.ui.panels.RaceDescriptionPanel raceDescriptionPanel1;
     private javax.swing.JComboBox racesComboBox;
     private javax.swing.JButton showPictureButton;
+    private javax.swing.JComboBox subracesComboBox;
     // End of variables declaration//GEN-END:variables
 }

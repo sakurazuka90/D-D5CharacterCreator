@@ -11,6 +11,7 @@ package com.blogspot.gameeaterpl.character;
  */
 public enum Subraces {
     
+    NONE("None"),
     HILLDWARF("Hill Dwarf"),
     MOUNTAINDWARF("Moutain Dwarf"),
     HIGHELF("High Elf"),
