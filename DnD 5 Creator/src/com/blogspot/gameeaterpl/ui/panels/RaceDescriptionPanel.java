@@ -52,6 +52,12 @@ public class RaceDescriptionPanel extends javax.swing.JPanel {
         mPictureLinks.put(Races.ELF, mBackgroundUrl+"rElf.jpg");
         mPictureLinks.put(Races.DWARF, mBackgroundUrl + "rDwarf.jpg");
         mPictureLinks.put(Races.HALFLING, mBackgroundUrl + "rHalfling.jpg");
+        mPictureLinks.put(Races.DRAGONBORN, mBackgroundUrl+"rElf.jpg");
+        mPictureLinks.put(Races.GNOME, mBackgroundUrl+"rElf.jpg");
+        mPictureLinks.put(Races.HALFELF, mBackgroundUrl+"rElf.jpg");
+        mPictureLinks.put(Races.HALFORC, mBackgroundUrl+"rElf.jpg");
+        mPictureLinks.put(Races.HUMAN, mBackgroundUrl+"rElf.jpg");
+        
     }
     
     public void switchDescription(Races pmRace)
@@ -111,9 +117,9 @@ public class RaceDescriptionPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
