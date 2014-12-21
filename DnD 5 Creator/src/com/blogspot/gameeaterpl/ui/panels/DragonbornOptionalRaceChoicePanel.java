@@ -111,7 +111,7 @@ public class DragonbornOptionalRaceChoicePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        DragonColorSelectionWindow lvDragonColorFrame = new DragonColorSelectionWindow();
+        DragonColorSelectionWindow lvDragonColorFrame = new DragonColorSelectionWindow(this);
         lvDragonColorFrame.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
