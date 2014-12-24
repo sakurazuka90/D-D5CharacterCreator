@@ -6,7 +6,9 @@
 package com.blogspot.gameeaterpl.ui.panels.windows;
 
 import com.blogspot.gameeaterpl.character.DraconicAncestorColor;
+import com.blogspot.gameeaterpl.enums.AttackTemplate;
 import com.blogspot.gameeaterpl.enums.DamageType;
+import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
 import com.blogspot.gameeaterpl.ui.panels.DragonbornOptionalRaceChoicePanel;
 import java.util.HashMap;
 import java.nio.charset.Charset;
@@ -16,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,6 +33,7 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
     DragonbornOptionalRaceChoicePanel mOpener;
     HashMap<DraconicAncestorColor, String> mColorDescription;
     HashMap<DraconicAncestorColor, DamageType> mColorDamageResistance;
+    HashMap<DraconicAncestorColor, AutomaterAttack> mColorBreathWeapon;
 
     /**
      * Creates new form DragonColorSelectionWindow
@@ -72,7 +76,7 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
             mColorDescription.put(DraconicAncestorColor.RED, readFile(this.getClass().getResource(mDescriptionUrl + "RedDragonDescription.txt"), StandardCharsets.UTF_8));
             mColorDescription.put(DraconicAncestorColor.SILVER, readFile(this.getClass().getResource(mDescriptionUrl + "SilverDragonDescription.txt"), StandardCharsets.UTF_8));
             mColorDescription.put(DraconicAncestorColor.WHITE, readFile(this.getClass().getResource(mDescriptionUrl + "WhiteDragonDescription.txt"), StandardCharsets.UTF_8));
-        
+
             mColorDamageResistance = new HashMap<>();
             mColorDamageResistance.put(DraconicAncestorColor.BLACK, DamageType.ACID);
             mColorDamageResistance.put(DraconicAncestorColor.BLUE, DamageType.LIGHTNING);
@@ -84,6 +88,37 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
             mColorDamageResistance.put(DraconicAncestorColor.RED, DamageType.FIRE);
             mColorDamageResistance.put(DraconicAncestorColor.SILVER, DamageType.COLD);
             mColorDamageResistance.put(DraconicAncestorColor.WHITE, DamageType.COLD);
+
+            mColorBreathWeapon = new HashMap<>();
+            ArrayList<Double> lvConeDimensions = new ArrayList<>();
+            lvConeDimensions.add(15.0);
+
+            ArrayList<Double> lvLineDimensions = new ArrayList<>();
+            lvLineDimensions.add(5.0);
+            lvLineDimensions.add(30.0);
+
+            AutomaterAttack lvAcidLine = new AutomaterAttack("Acid Line", DamageType.ACID, AttackTemplate.LINE, lvLineDimensions);
+            mColorBreathWeapon.put(DraconicAncestorColor.BLACK, lvAcidLine);
+            mColorBreathWeapon.put(DraconicAncestorColor.COPPER, lvAcidLine);
+
+            AutomaterAttack lvLightningLine = new AutomaterAttack("Lightning Line", DamageType.LIGHTNING, AttackTemplate.LINE, lvLineDimensions);
+            mColorBreathWeapon.put(DraconicAncestorColor.BLUE, lvLightningLine);
+            mColorBreathWeapon.put(DraconicAncestorColor.BRONZE, lvLightningLine);
+
+            AutomaterAttack lvFireLine = new AutomaterAttack("Fire Line", DamageType.FIRE, AttackTemplate.LINE, lvLineDimensions);
+            mColorBreathWeapon.put(DraconicAncestorColor.BRASS, lvFireLine);
+
+            AutomaterAttack lvFireCone = new AutomaterAttack("Fire Cone", DamageType.FIRE, AttackTemplate.CONE, lvConeDimensions);
+            mColorBreathWeapon.put(DraconicAncestorColor.GOLD, lvFireCone);
+            mColorBreathWeapon.put(DraconicAncestorColor.RED, lvFireCone);
+
+            AutomaterAttack lvColdCone = new AutomaterAttack("Cold Cone", DamageType.COLD, AttackTemplate.CONE, lvConeDimensions);
+            mColorBreathWeapon.put(DraconicAncestorColor.WHITE, lvColdCone);
+            mColorBreathWeapon.put(DraconicAncestorColor.SILVER, lvColdCone);
+
+            AutomaterAttack lvPoisonCone = new AutomaterAttack("Poison Cone", DamageType.POISON, AttackTemplate.CONE, lvConeDimensions);
+            mColorBreathWeapon.put(DraconicAncestorColor.GREEN, lvPoisonCone);
+
         } catch (IOException | URISyntaxException ex) {
             Logger.getLogger(DragonColorSelectionWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -188,16 +223,16 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (mOpener != null) {
             DraconicAncestorColor lvSelectedColor = (DraconicAncestorColor) jList1.getSelectedValue();
-            mOpener.setFieldsValues(lvSelectedColor, mColorDamageResistance.get(lvSelectedColor));
+            mOpener.setFieldsValues(lvSelectedColor, mColorDamageResistance.get(lvSelectedColor), mColorBreathWeapon.get(lvSelectedColor));
         }
-        
+
         this.dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         jTextPane1.setText(mColorDescription.get((DraconicAncestorColor) jList1.getSelectedValue()));
-        
+
     }//GEN-LAST:event_jList1ValueChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

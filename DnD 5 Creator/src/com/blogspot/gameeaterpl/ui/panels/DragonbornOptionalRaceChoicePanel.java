@@ -8,6 +8,7 @@ package com.blogspot.gameeaterpl.ui.panels;
 
 import com.blogspot.gameeaterpl.character.DraconicAncestorColor;
 import com.blogspot.gameeaterpl.enums.DamageType;
+import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
 import com.blogspot.gameeaterpl.ui.panels.windows.DragonColorSelectionWindow;
 
 /**
@@ -17,6 +18,8 @@ import com.blogspot.gameeaterpl.ui.panels.windows.DragonColorSelectionWindow;
 public class DragonbornOptionalRaceChoicePanel extends javax.swing.JPanel {
 
     DraconicAncestorColor mSelectedColor;
+    DamageType mDamageType;
+    AutomaterAttack mAttack;
     
     /**
      * Creates new form DragonbornOptionalRaceChoicePanel
@@ -81,10 +84,10 @@ public class DragonbornOptionalRaceChoicePanel extends javax.swing.JPanel {
                         .addComponent(jLabel3)
                         .addComponent(dragonColorField, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                         .addComponent(damageTypeField)
-                        .addComponent(jLabel4)
-                        .addComponent(breathWeaponField))
+                        .addComponent(jLabel4))
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(breathWeaponField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -115,10 +118,19 @@ public class DragonbornOptionalRaceChoicePanel extends javax.swing.JPanel {
         lvDragonColorFrame.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    public void setFieldsValues(DraconicAncestorColor pmColor, DamageType pmResistance)
+    public void setFieldsValues(DraconicAncestorColor pmColor, DamageType pmResistance, AutomaterAttack pmAttack)
     {
         dragonColorField.setText(pmColor.toString());
+        
+        mSelectedColor = pmColor;
+        
         damageTypeField.setText(pmResistance.toString());
+        
+        mDamageType = pmResistance;
+        
+        breathWeaponField.setText(pmAttack.toFieldString());
+        
+        mAttack = pmAttack;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
