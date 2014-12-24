@@ -52,7 +52,7 @@ public class RaceDescriptionPanel extends javax.swing.JPanel {
         mPictureLinks.put(Races.ELF, mBackgroundUrl+"rElf.jpg");
         mPictureLinks.put(Races.DWARF, mBackgroundUrl + "rDwarf.jpg");
         mPictureLinks.put(Races.HALFLING, mBackgroundUrl + "rHalfling.jpg");
-        mPictureLinks.put(Races.DRAGONBORN, mBackgroundUrl+"rElf.jpg");
+        mPictureLinks.put(Races.DRAGONBORN, mBackgroundUrl+"rDragonborn.jpg");
         mPictureLinks.put(Races.GNOME, mBackgroundUrl+"rElf.jpg");
         mPictureLinks.put(Races.HALFELF, mBackgroundUrl+"rElf.jpg");
         mPictureLinks.put(Races.HALFORC, mBackgroundUrl+"rElf.jpg");
