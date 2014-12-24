@@ -6,17 +6,19 @@
 package com.blogspot.gameeaterpl.ui.panels.windows;
 
 import com.blogspot.gameeaterpl.character.DraconicAncestorColor;
+import com.blogspot.gameeaterpl.enums.DamageType;
 import com.blogspot.gameeaterpl.ui.panels.DragonbornOptionalRaceChoicePanel;
 import java.util.HashMap;
 import java.nio.charset.Charset;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Files; 
-import java.nio.file.Paths; 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author sakurazuka
@@ -27,6 +29,7 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
 
     DragonbornOptionalRaceChoicePanel mOpener;
     HashMap<DraconicAncestorColor, String> mColorDescription;
+    HashMap<DraconicAncestorColor, DamageType> mColorDamageResistance;
 
     /**
      * Creates new form DragonColorSelectionWindow
@@ -36,6 +39,8 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         initHashMaps();
 
+        jList1.setSelectedIndex(0);
+        jTextPane1.setText(mColorDescription.get((DraconicAncestorColor) jList1.getSelectedValue()));
     }
 
     /**
@@ -48,13 +53,37 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
         this.mOpener = pmOpener;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         initHashMaps();
+
+        jList1.setSelectedIndex(0);
+        jTextPane1.setText(mColorDescription.get((DraconicAncestorColor) jList1.getSelectedValue()));
     }
 
     private void initHashMaps() {
         try {
-            jTextPane1.setText(readFile(this.getClass().getResource(mDescriptionUrl + "BlackDragonDescription.txt"),StandardCharsets.UTF_8));
-            
-            //mColorDescription.put(DraconicAncestorColor.BLACK, )
+            mColorDescription = new HashMap<>();
+
+            mColorDescription.put(DraconicAncestorColor.BLACK, readFile(this.getClass().getResource(mDescriptionUrl + "BlackDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.BLUE, readFile(this.getClass().getResource(mDescriptionUrl + "BlueDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.BRASS, readFile(this.getClass().getResource(mDescriptionUrl + "BrassDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.BRONZE, readFile(this.getClass().getResource(mDescriptionUrl + "BronzeDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.COPPER, readFile(this.getClass().getResource(mDescriptionUrl + "CopperDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.GOLD, readFile(this.getClass().getResource(mDescriptionUrl + "GoldDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.GREEN, readFile(this.getClass().getResource(mDescriptionUrl + "GreenDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.RED, readFile(this.getClass().getResource(mDescriptionUrl + "RedDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.SILVER, readFile(this.getClass().getResource(mDescriptionUrl + "SilverDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.WHITE, readFile(this.getClass().getResource(mDescriptionUrl + "WhiteDragonDescription.txt"), StandardCharsets.UTF_8));
+        
+            mColorDamageResistance = new HashMap<>();
+            mColorDamageResistance.put(DraconicAncestorColor.BLACK, DamageType.ACID);
+            mColorDamageResistance.put(DraconicAncestorColor.BLUE, DamageType.LIGHTNING);
+            mColorDamageResistance.put(DraconicAncestorColor.BRASS, DamageType.FIRE);
+            mColorDamageResistance.put(DraconicAncestorColor.BRONZE, DamageType.LIGHTNING);
+            mColorDamageResistance.put(DraconicAncestorColor.COPPER, DamageType.ACID);
+            mColorDamageResistance.put(DraconicAncestorColor.GOLD, DamageType.FIRE);
+            mColorDamageResistance.put(DraconicAncestorColor.GREEN, DamageType.POISON);
+            mColorDamageResistance.put(DraconicAncestorColor.RED, DamageType.FIRE);
+            mColorDamageResistance.put(DraconicAncestorColor.SILVER, DamageType.COLD);
+            mColorDamageResistance.put(DraconicAncestorColor.WHITE, DamageType.COLD);
         } catch (IOException | URISyntaxException ex) {
             Logger.getLogger(DragonColorSelectionWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -92,6 +121,11 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
             public int getSize() { return colors.length; }
             public Object getElementAt(int i) { return colors[i]; }
         });
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setText("OK");
@@ -102,6 +136,11 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jScrollPane3.setViewportView(jTextPane1);
         jTextPane1.setText("Opis smoka.\nSmok jest fajny.\n");
@@ -147,8 +186,23 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (mOpener != null) {
+            DraconicAncestorColor lvSelectedColor = (DraconicAncestorColor) jList1.getSelectedValue();
+            mOpener.setFieldsValues(lvSelectedColor, mColorDamageResistance.get(lvSelectedColor));
+        }
+        
+        this.dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        jTextPane1.setText(mColorDescription.get((DraconicAncestorColor) jList1.getSelectedValue()));
+        
+    }//GEN-LAST:event_jList1ValueChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

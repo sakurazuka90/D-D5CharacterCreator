@@ -4,3 +4,5 @@ Black Dragonborn gets folowing bonuses:
 
 Resistance: Acid Damage
 
+Breath weapon: Acid line (5 by 30 feat), Dex save
+

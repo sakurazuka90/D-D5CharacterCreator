@@ -1,0 +1,6 @@
+Silver dragons are playful and loves good joke above all. They live in forest caves, hidden from mean look of dangerous Green dragons.
+Silver Dragonborn gets folowing bonuses:
+
+Resistance: FCold Damage
+
+Breath weapon: Cold 15 feet cone, Con save

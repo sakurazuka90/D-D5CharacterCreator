@@ -1,0 +1,7 @@
+Blue dragons are deadly predators. They live in caves hidden beneath deserts, feasting on caravans.
+
+Blue Dragonborn gets folowing bonuses:
+
+Resistance: Lightning Damage
+
+Breath weapon: Lightning line (5 by 30 feat), Dex save

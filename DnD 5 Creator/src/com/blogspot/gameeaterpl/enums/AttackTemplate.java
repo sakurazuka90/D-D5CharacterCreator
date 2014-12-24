@@ -9,17 +9,14 @@ package com.blogspot.gameeaterpl.enums;
  *
  * @author Sakurazuka
  */
-public enum DamageType {
+public enum AttackTemplate {
 
-    ACID("Acid"),
-    LIGHTNING("Lightning"),
-    FIRE("Fire"),
-    COLD("Cold"),
-    POISON("Poison");
+    CONE("Cone"),
+    LINE("Line");
 
     private final String mName;
 
-    DamageType(String pmName) {
+    AttackTemplate(String pmName) {
         this.mName = pmName;
     }
     
