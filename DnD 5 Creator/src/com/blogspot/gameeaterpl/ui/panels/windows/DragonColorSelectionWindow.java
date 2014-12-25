@@ -10,6 +10,7 @@ import com.blogspot.gameeaterpl.enums.AttackTemplate;
 import com.blogspot.gameeaterpl.enums.DamageType;
 import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
 import com.blogspot.gameeaterpl.ui.panels.DragonbornOptionalRaceChoicePanel;
+import com.blogspot.gameeaterpl.utils.FileUtils;
 import java.util.HashMap;
 import java.nio.charset.Charset;
 import java.io.IOException;
@@ -27,8 +28,6 @@ import java.util.logging.Logger;
  * @author sakurazuka
  */
 public class DragonColorSelectionWindow extends javax.swing.JFrame {
-
-    private final String mDescriptionUrl = "/com/blogspot/gameeaterpl/ui/resources/descriptions/";
 
     DragonbornOptionalRaceChoicePanel mOpener;
     HashMap<DraconicAncestorColor, String> mColorDescription;
@@ -66,16 +65,16 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
         try {
             mColorDescription = new HashMap<>();
 
-            mColorDescription.put(DraconicAncestorColor.BLACK, readFile(this.getClass().getResource(mDescriptionUrl + "BlackDragonDescription.txt"), StandardCharsets.UTF_8));
-            mColorDescription.put(DraconicAncestorColor.BLUE, readFile(this.getClass().getResource(mDescriptionUrl + "BlueDragonDescription.txt"), StandardCharsets.UTF_8));
-            mColorDescription.put(DraconicAncestorColor.BRASS, readFile(this.getClass().getResource(mDescriptionUrl + "BrassDragonDescription.txt"), StandardCharsets.UTF_8));
-            mColorDescription.put(DraconicAncestorColor.BRONZE, readFile(this.getClass().getResource(mDescriptionUrl + "BronzeDragonDescription.txt"), StandardCharsets.UTF_8));
-            mColorDescription.put(DraconicAncestorColor.COPPER, readFile(this.getClass().getResource(mDescriptionUrl + "CopperDragonDescription.txt"), StandardCharsets.UTF_8));
-            mColorDescription.put(DraconicAncestorColor.GOLD, readFile(this.getClass().getResource(mDescriptionUrl + "GoldDragonDescription.txt"), StandardCharsets.UTF_8));
-            mColorDescription.put(DraconicAncestorColor.GREEN, readFile(this.getClass().getResource(mDescriptionUrl + "GreenDragonDescription.txt"), StandardCharsets.UTF_8));
-            mColorDescription.put(DraconicAncestorColor.RED, readFile(this.getClass().getResource(mDescriptionUrl + "RedDragonDescription.txt"), StandardCharsets.UTF_8));
-            mColorDescription.put(DraconicAncestorColor.SILVER, readFile(this.getClass().getResource(mDescriptionUrl + "SilverDragonDescription.txt"), StandardCharsets.UTF_8));
-            mColorDescription.put(DraconicAncestorColor.WHITE, readFile(this.getClass().getResource(mDescriptionUrl + "WhiteDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.BLACK, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "BlackDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.BLUE, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "BlueDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.BRASS, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "BrassDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.BRONZE, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "BronzeDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.COPPER, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "CopperDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.GOLD, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "GoldDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.GREEN, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "GreenDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.RED, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "RedDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.SILVER, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "SilverDragonDescription.txt"), StandardCharsets.UTF_8));
+            mColorDescription.put(DraconicAncestorColor.WHITE, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "WhiteDragonDescription.txt"), StandardCharsets.UTF_8));
 
             mColorDamageResistance = new HashMap<>();
             mColorDamageResistance.put(DraconicAncestorColor.BLACK, DamageType.ACID);
@@ -123,12 +122,6 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
             Logger.getLogger(DragonColorSelectionWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    private static String readFile(URL path, Charset encoding) throws IOException, URISyntaxException {
-        byte[] encoded = Files.readAllBytes(Paths.get(path.toURI()));
-        return new String(encoded, encoding);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,6 +149,7 @@ public class DragonColorSelectionWindow extends javax.swing.JFrame {
             public int getSize() { return colors.length; }
             public Object getElementAt(int i) { return colors[i]; }
         });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jList1ValueChanged(evt);

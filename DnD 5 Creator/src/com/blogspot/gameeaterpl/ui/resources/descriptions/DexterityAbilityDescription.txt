@@ -1,0 +1,7 @@
+Dexterity
+
+Measures: Physical agility, reflexes, balance, poise 
+Important for: Monk, ranger, rogue 
+Racial Increases:
+Elf (+2) Forest gnome (+1) Halfling (+2) Human (+1)
+

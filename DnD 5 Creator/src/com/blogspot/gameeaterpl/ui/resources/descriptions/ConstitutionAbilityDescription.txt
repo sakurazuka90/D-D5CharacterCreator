@@ -1,0 +1,6 @@
+Constitution
+
+Measures: Health, stamina, vital force 
+Important for: Everyone 
+Racial Increases:
+Dwarf (+2) Half-orc (+1) Stout halfling (+1) Human (+1) Rock gnome (+1)

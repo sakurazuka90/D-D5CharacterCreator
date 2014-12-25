@@ -1,0 +1,7 @@
+Charisma
+
+Measures: Confidence, eloquence, leadership Important for: Bard, sorcerer, warlock 
+Racial Increases:
+Half-elf (+2) Dragonborn (+1)
+Drow (+1) Human (+1)
+Lightfoot halfling (+1) Tiefling (+2)
