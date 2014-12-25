@@ -5,7 +5,6 @@
  */
 package com.blogspot.gameeaterpl.ui.panels.windows;
 
-import com.blogspot.gameeaterpl.character.DraconicAncestorColor;
 import com.blogspot.gameeaterpl.enums.Abilities;
 import com.blogspot.gameeaterpl.utils.FileUtils;
 import java.io.IOException;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -27,7 +26,7 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
     private final Integer mMaxSelected;
     private final Integer mMinSelected;
     private final Integer mExatcSelected;
-    private final JPanel mOpener;
+    private final AbilitiesSelectionWindowOpener mOpener;
     private HashMap<Abilities, String> mAbilitiesDescriptions;
 
     /**
@@ -44,6 +43,7 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
         mExatcSelected = null;
 
         setAcceptButtonEnabled();
+        setLabelText();
         setDescriptions();
     }
 
@@ -54,7 +54,7 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
      * @param pmMinSelected
      * @param pmOpener
      */
-    public AbillitiesSelectionWindow(Integer pmMaxSelected, Integer pmMinSelected, JPanel pmOpener) {
+    public AbillitiesSelectionWindow(Integer pmMaxSelected, Integer pmMinSelected, AbilitiesSelectionWindowOpener pmOpener) {
 
         this.mOpener = pmOpener;
         initComponents();
@@ -75,11 +75,15 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
 
         if (Objects.equals(mMinSelected, mMaxSelected)) {
             mExatcSelected = mMinSelected;
+            if (mExatcSelected == 1) {
+                abilitiesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            }
         } else {
             mExatcSelected = null;
         }
 
         setAcceptButtonEnabled();
+        setLabelText();
         setDescriptions();
     }
 
@@ -97,6 +101,19 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
                 acceptButton.setEnabled(false);
             }
         }
+    }
+
+    private void setLabelText() {
+
+        StringBuilder lvBuilder = new StringBuilder("Select ");
+
+        if (mExatcSelected != null) {
+            lvBuilder.append(mExatcSelected);
+        } else {
+            lvBuilder.append(mMinSelected).append(" to ").append(mMaxSelected);
+        }
+        lvBuilder.append(" Abilities.");
+        label.setText(lvBuilder.toString());
     }
 
     private void initDescriptions() {
@@ -141,7 +158,7 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         abilitiesList = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -151,8 +168,8 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("Choose Abilities");
+        label.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        label.setText("Choose Abilities");
 
         abilitiesList.setModel(new javax.swing.AbstractListModel() {
             Abilities[] abilities = {Abilities.STRENGTH,Abilities.CONSTITUTION,Abilities.DEXTERITY,Abilities.INTELIGENCE,Abilities.WISDOM,Abilities.CHARISMA};
@@ -177,6 +194,11 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
         abilitiesDescription.setEditable(false);
 
         acceptButton.setText("OK");
+        acceptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +220,7 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(label)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(acceptButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -210,7 +232,7 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2)
@@ -237,6 +259,11 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
+        this.mOpener.setAbilitiesFields(abilitiesList.getSelectedValuesList());
+        this.dispose();
+    }//GEN-LAST:event_acceptButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,8 +305,8 @@ public class AbillitiesSelectionWindow extends javax.swing.JFrame {
     private javax.swing.JList abilitiesList;
     private javax.swing.JButton acceptButton;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
 }
