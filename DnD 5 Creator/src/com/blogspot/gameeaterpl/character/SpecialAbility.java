@@ -7,8 +7,8 @@ package com.blogspot.gameeaterpl.character;
 
 /**
  *
- * @author sakurazuka
+ * @author Sakurazuka
  */
-public enum AttributesBrevities {
-    STR,CON,DEX,INT,WIS,CHA
+public class SpecialAbility {
+    
 }

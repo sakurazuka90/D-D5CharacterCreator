@@ -21,6 +21,7 @@ import java.util.List;
 public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements AbilitiesSelectionWindowOpener, SkillsSelectionWindowOpener {
 
     HashMap<Abilities, Integer> mAbilities;
+    Skills mSkill;
 
     /**
      * Creates new form HumanOptionalRaceChoicePanel
@@ -61,8 +62,15 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
                 jRadioButton1ActionPerformed(evt);
             }
         });
+        jRadioButton1.setSelected(true);
 
         jRadioButton2.setText("+1 to two Abilities, 1 Skill proficiency and 1 Feat");
+        jRadioButton2.setSelected(false);
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Choose 2 Abilities ");
 
@@ -78,6 +86,7 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.setEnabled(false);
 
         jButton2.setText("Choose");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +94,7 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
                 jButton2ActionPerformed(evt);
             }
         });
+        jButton2.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -159,7 +169,9 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
+        jRadioButton2.setSelected(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -171,6 +183,12 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
         SkillSelectionWindow lvWindow = new SkillSelectionWindow(1, 1, this, null, null);
         lvWindow.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        jButton1.setEnabled(true);
+        jButton2.setEnabled(true);
+        jRadioButton1.setSelected(false);
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -200,6 +218,7 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
 
     @Override
     public void setSkillsFields(List<Skills> pmAbilitiesList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        skillField1.setText(pmAbilitiesList.get(0).toString());
+        mSkill = pmAbilitiesList.get(0);
     }
 }

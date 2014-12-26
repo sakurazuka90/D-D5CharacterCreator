@@ -5,6 +5,7 @@
  */
 package com.blogspot.gameeaterpl.character;
 
+import com.blogspot.gameeaterpl.enums.Abilities;
 import java.util.HashMap;
 
 /**
@@ -17,16 +18,16 @@ public class Character {
     private String mPlayerName;
     private String mAlignment;
 
-    private HashMap<AttributesBrevities, Ability> mAbilities;
+    private HashMap<Abilities, Ability> mAbilities;
 
     public Character() {
         mAbilities = new HashMap<>();
-        mAbilities.put(AttributesBrevities.STR, new Ability("Strength"));
-        mAbilities.put(AttributesBrevities.DEX, new Ability("Dexterity"));
-        mAbilities.put(AttributesBrevities.CON, new Ability("Constitution"));
-        mAbilities.put(AttributesBrevities.INT, new Ability("Inteligence"));
-        mAbilities.put(AttributesBrevities.WIS, new Ability("Wisdom"));
-        mAbilities.put(AttributesBrevities.CHA, new Ability("Charisma"));
+        mAbilities.put(Abilities.STRENGTH, new Ability(Abilities.STRENGTH.toString()));
+        mAbilities.put(Abilities.DEXTERITY, new Ability(Abilities.DEXTERITY.toString()));
+        mAbilities.put(Abilities.CONSTITUTION, new Ability(Abilities.CONSTITUTION.toString()));
+        mAbilities.put(Abilities.INTELIGENCE, new Ability(Abilities.INTELIGENCE.toString()));
+        mAbilities.put(Abilities.WISDOM, new Ability(Abilities.WISDOM.toString()));
+        mAbilities.put(Abilities.CHARISMA, new Ability(Abilities.CHARISMA.toString()));
     }
 
     public void printDataTest() {
@@ -34,12 +35,12 @@ public class Character {
         System.out.println("Imię gracza: " + mPlayerName);
         System.out.println("Charakter: " + mAlignment);
         
-        System.out.println("STR: " + mAbilities.get(AttributesBrevities.STR).getTestString());
-        System.out.println("CON: " + mAbilities.get(AttributesBrevities.CON).getTestString());
-        System.out.println("DEX: " + mAbilities.get(AttributesBrevities.DEX).getTestString());
-        System.out.println("INT: " + mAbilities.get(AttributesBrevities.INT).getTestString());
-        System.out.println("WIS: " + mAbilities.get(AttributesBrevities.WIS).getTestString());
-        System.out.println("CHA: " + mAbilities.get(AttributesBrevities.CHA).getTestString());
+        System.out.println("STR: " + mAbilities.get(Abilities.STRENGTH).getTestString());
+        System.out.println("CON: " + mAbilities.get(Abilities.CONSTITUTION).getTestString());
+        System.out.println("DEX: " + mAbilities.get(Abilities.DEXTERITY).getTestString());
+        System.out.println("INT: " + mAbilities.get(Abilities.INTELIGENCE).getTestString());
+        System.out.println("WIS: " + mAbilities.get(Abilities.WISDOM).getTestString());
+        System.out.println("CHA: " + mAbilities.get(Abilities.CHARISMA).getTestString());
     }
 
     public String getmCharacterName() {
@@ -67,27 +68,27 @@ public class Character {
     }
 
     public void setStrength(Integer pmValue) {
-        mAbilities.get(AttributesBrevities.STR).setmScore(pmValue);
+        mAbilities.get(Abilities.STRENGTH).setmScore(pmValue);
     }
 
     public void setConstitution(Integer pmValue) {
-        mAbilities.get(AttributesBrevities.CON).setmScore(pmValue);
+        mAbilities.get(Abilities.CONSTITUTION).setmScore(pmValue);
     }
 
     public void setDexterity(Integer pmValue) {
-        mAbilities.get(AttributesBrevities.DEX).setmScore(pmValue);
+        mAbilities.get(Abilities.DEXTERITY).setmScore(pmValue);
     }
 
     public void setInteligence(Integer pmValue) {
-        mAbilities.get(AttributesBrevities.INT).setmScore(pmValue);
+        mAbilities.get(Abilities.INTELIGENCE).setmScore(pmValue);
     }
 
     public void setWisdom(Integer pmValue) {
-        mAbilities.get(AttributesBrevities.WIS).setmScore(pmValue);
+        mAbilities.get(Abilities.WISDOM).setmScore(pmValue);
     }
 
     public void setCharisma(Integer pmValue) {
-        mAbilities.get(AttributesBrevities.CHA).setmScore(pmValue);
+        mAbilities.get(Abilities.CHARISMA).setmScore(pmValue);
     }
 
     public void setAbilities(Integer pmStrVal, Integer pmConVal, Integer pmDexVal, Integer pmIntVal, Integer pmWisVal, Integer pmChaVal) {
