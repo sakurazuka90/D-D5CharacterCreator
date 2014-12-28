@@ -5,9 +5,9 @@
  */
 package com.blogspot.gameeaterpl.character;
 
-import com.blogspot.gameeaterpl.enums.Abilities;
 import com.blogspot.gameeaterpl.enums.DamageType;
 import com.blogspot.gameeaterpl.enums.Languages;
+import com.blogspot.gameeaterpl.enums.MartialWeapons;
 import com.blogspot.gameeaterpl.enums.Sizes;
 import com.blogspot.gameeaterpl.enums.Skills;
 import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
@@ -28,9 +28,9 @@ public class CharacterRace extends CharacterPart {
 
     protected Integer mDarkVision; //in feet
 
-    public CharacterRace(Races pmRace, Subraces pmSubrace, Sizes pmSize, Integer pmSpeed, Integer pmDarkVision, HashMap<Integer, ArrayList<AutomaterAttack>> pmAttacks, HashMap<Integer, ArrayList<AbilityIncrease>> pmAbilities, HashMap<Integer, ArrayList<Skills>> pmSkills, HashMap<Integer, ArrayList<SpecialAbility>> pmSpecialAbilities, HashMap<Integer, ArrayList<DamageType>> pmResistances, HashMap<Integer, ArrayList<CharacterTextFeature>> pmFeatures, HashMap<Integer, ArrayList<Languages>> pmLanguages) {
+    protected CharacterRace(Races pmRace, Subraces pmSubrace, Sizes pmSize, Integer pmSpeed, Integer pmDarkVision, HashMap<Integer, ArrayList<AutomaterAttack>> pmAttacks, HashMap<Integer, ArrayList<AbilityIncrease>> pmAbilities, HashMap<Integer, ArrayList<Skills>> pmSkills, HashMap<Integer, ArrayList<SpecialAbility>> pmSpecialAbilities, HashMap<Integer, ArrayList<DamageType>> pmResistances, HashMap<Integer, ArrayList<CharacterTextFeature>> pmFeatures, HashMap<Integer, ArrayList<Languages>> pmLanguages, HashMap<Integer,ArrayList<MartialWeapons>> pmMartialWeapons) {
         
-        super(pmAttacks, pmAbilities, pmSkills, pmSpecialAbilities, pmResistances, pmFeatures, pmLanguages);
+        super(pmAttacks, pmAbilities, pmSkills, pmSpecialAbilities, pmResistances, pmFeatures, pmLanguages, pmMartialWeapons);
         this.mRace = pmRace;
         this.mSubrace = pmSubrace;
         this.mSize = pmSize;

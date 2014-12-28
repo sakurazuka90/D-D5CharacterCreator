@@ -12,9 +12,9 @@ import com.blogspot.gameeaterpl.character.DwarfRace;
 import com.blogspot.gameeaterpl.character.Races;
 import com.blogspot.gameeaterpl.character.SpecialAbility;
 import com.blogspot.gameeaterpl.character.Subraces;
-import com.blogspot.gameeaterpl.enums.Abilities;
 import com.blogspot.gameeaterpl.enums.DamageType;
 import com.blogspot.gameeaterpl.enums.Languages;
+import com.blogspot.gameeaterpl.enums.MartialWeapons;
 import com.blogspot.gameeaterpl.enums.Skills;
 import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
 import java.util.ArrayList;
@@ -26,11 +26,11 @@ import java.util.HashMap;
  */
 public class CharacterRaceFactory {
 
-    public static CharacterRace buildCharacterRace(Races pmRace, Subraces pmSubrace, HashMap<Integer, ArrayList<AutomaterAttack>> pmAttacks, HashMap<Integer, ArrayList<AbilityIncrease>> pmAbilities, HashMap<Integer, ArrayList<Skills>> pmSkills, HashMap<Integer, ArrayList<SpecialAbility>> pmSpecialAbilities, HashMap<Integer, ArrayList<DamageType>> pmResistances, HashMap<Integer, ArrayList<CharacterTextFeature>> pmFeatures, HashMap<Integer, ArrayList<Languages>> pmLanguages) {
+    public static CharacterRace buildCharacterRace(Races pmRace, Subraces pmSubrace, HashMap<Integer, ArrayList<AutomaterAttack>> pmAttacks, HashMap<Integer, ArrayList<AbilityIncrease>> pmAbilities, HashMap<Integer, ArrayList<Skills>> pmSkills, HashMap<Integer, ArrayList<SpecialAbility>> pmSpecialAbilities, HashMap<Integer, ArrayList<DamageType>> pmResistances, HashMap<Integer, ArrayList<CharacterTextFeature>> pmFeatures, HashMap<Integer, ArrayList<Languages>> pmLanguages, HashMap<Integer, ArrayList<MartialWeapons>> pmMartialWeapons) {
         CharacterRace lvRace = null;
         switch (pmRace) {
             case DWARF:
-                lvRace = new DwarfRace(pmSubrace, pmAttacks, pmAbilities, pmSkills, pmSpecialAbilities, pmResistances, pmFeatures, pmLanguages);
+                lvRace = new DwarfRace(pmSubrace, pmAttacks, pmAbilities, pmSkills, pmSpecialAbilities, pmResistances, pmFeatures, pmLanguages, pmMartialWeapons);
                 break;
         }
 

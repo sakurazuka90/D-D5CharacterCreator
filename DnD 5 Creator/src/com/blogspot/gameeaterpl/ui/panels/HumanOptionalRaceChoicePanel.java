@@ -9,10 +9,19 @@ import com.blogspot.gameeaterpl.enums.Abilities;
 import com.blogspot.gameeaterpl.enums.Skills;
 import com.blogspot.gameeaterpl.ui.panels.windows.AbilitiesSelectionWindowOpener;
 import com.blogspot.gameeaterpl.ui.panels.windows.AbillitiesSelectionWindow;
+import com.blogspot.gameeaterpl.ui.panels.windows.BasicSelectionWindow;
 import com.blogspot.gameeaterpl.ui.panels.windows.SkillSelectionWindow;
 import com.blogspot.gameeaterpl.ui.panels.windows.SkillsSelectionWindowOpener;
+import com.blogspot.gameeaterpl.utils.FileUtils;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractListModel;
 
 /**
  *
@@ -175,12 +184,63 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AbillitiesSelectionWindow lvWindow = new AbillitiesSelectionWindow(2, 2, this);
+        //AbillitiesSelectionWindow lvWindow = new AbillitiesSelectionWindow(2, 2, this);
+        AbstractListModel lvModel = new javax.swing.AbstractListModel() {
+            Abilities[] abilities = {Abilities.STRENGTH,Abilities.CONSTITUTION,Abilities.DEXTERITY,Abilities.INTELIGENCE,Abilities.WISDOM,Abilities.CHARISMA};
+            public int getSize() { return abilities.length; }
+            public Object getElementAt(int i) { return abilities[i]; }
+        };
+        
+        HashMap<Object,String> lvAbilitiesDescriptions = new HashMap<>();
+
+        try {
+            lvAbilitiesDescriptions.put(Abilities.STRENGTH, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "StrengthAbilityDescription.txt"), StandardCharsets.UTF_8));
+            lvAbilitiesDescriptions.put(Abilities.CONSTITUTION, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "ConstitutionAbilityDescription.txt"), StandardCharsets.UTF_8));
+            lvAbilitiesDescriptions.put(Abilities.DEXTERITY, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "DexterityAbilityDescription.txt"), StandardCharsets.UTF_8));
+            lvAbilitiesDescriptions.put(Abilities.INTELIGENCE, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "InteligenceAbilityDescription.txt"), StandardCharsets.UTF_8));
+            lvAbilitiesDescriptions.put(Abilities.WISDOM, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "WisdomAbilityDescription.txt"), StandardCharsets.UTF_8));
+            lvAbilitiesDescriptions.put(Abilities.CHARISMA, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "CharismaAbilityDescription.txt"), StandardCharsets.UTF_8));
+        } catch (IOException ex) {
+            Logger.getLogger(AbillitiesSelectionWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(AbillitiesSelectionWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        BasicSelectionWindow lvWindow = new BasicSelectionWindow(2, 2, lvModel, lvAbilitiesDescriptions, "Ability", "Abilities", (AbilitiesSelectionWindowOpener)this);
+        
         lvWindow.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        SkillSelectionWindow lvWindow = new SkillSelectionWindow(1, 1, this, null, null);
+        //SkillSelectionWindow lvWindow = new SkillSelectionWindow(1, 1, this, null, null);
+         ArrayList<Skills> lvList;
+        lvList = Skills.toList();
+        
+         AbstractListModel lvModel = new javax.swing.AbstractListModel() {
+            Skills[] skills = new Skills[lvList.size()];
+            {
+                this.skills = lvList.toArray(skills);
+            }
+
+            @Override
+            public int getSize() {
+                return skills.length;
+            }
+
+            @Override
+            public Object getElementAt(int i) {
+                return skills[i];
+            }
+        };
+         
+          HashMap<Object,String> lvSkillsDescriptions = new HashMap<>();
+          
+          for(Skills lvSkill : lvList)
+          {
+              lvSkillsDescriptions.put(lvSkill, "");
+          }
+        BasicSelectionWindow lvWindow = new BasicSelectionWindow(1, 1, lvModel, lvSkillsDescriptions, "Skill", "Skills", (SkillsSelectionWindowOpener)this);
+       
         lvWindow.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

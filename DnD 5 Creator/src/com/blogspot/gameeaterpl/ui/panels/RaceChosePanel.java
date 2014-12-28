@@ -33,7 +33,7 @@ public class RaceChosePanel extends javax.swing.JPanel {
         mSubraceToRaceConnection = new HashMap<>();
 
         lvTempList.add(Subraces.MOUNTAINDWARF);
-        lvTempList.add(Subraces.HIGHELF);
+        lvTempList.add(Subraces.HILLDWARF);
         mSubraceToRaceConnection.put(Races.DWARF, lvTempList);
 
         lvTempList = new ArrayList<>();
