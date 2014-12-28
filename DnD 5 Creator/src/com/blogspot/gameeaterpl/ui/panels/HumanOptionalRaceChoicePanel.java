@@ -8,9 +8,7 @@ package com.blogspot.gameeaterpl.ui.panels;
 import com.blogspot.gameeaterpl.enums.Abilities;
 import com.blogspot.gameeaterpl.enums.Skills;
 import com.blogspot.gameeaterpl.ui.panels.windows.AbilitiesSelectionWindowOpener;
-import com.blogspot.gameeaterpl.ui.panels.windows.AbillitiesSelectionWindow;
 import com.blogspot.gameeaterpl.ui.panels.windows.BasicSelectionWindow;
-import com.blogspot.gameeaterpl.ui.panels.windows.SkillSelectionWindow;
 import com.blogspot.gameeaterpl.ui.panels.windows.SkillsSelectionWindowOpener;
 import com.blogspot.gameeaterpl.utils.FileUtils;
 import java.io.IOException;
@@ -187,7 +185,9 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
         //AbillitiesSelectionWindow lvWindow = new AbillitiesSelectionWindow(2, 2, this);
         AbstractListModel lvModel = new javax.swing.AbstractListModel() {
             Abilities[] abilities = {Abilities.STRENGTH,Abilities.CONSTITUTION,Abilities.DEXTERITY,Abilities.INTELIGENCE,Abilities.WISDOM,Abilities.CHARISMA};
+            @Override
             public int getSize() { return abilities.length; }
+            @Override
             public Object getElementAt(int i) { return abilities[i]; }
         };
         
@@ -200,10 +200,8 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
             lvAbilitiesDescriptions.put(Abilities.INTELIGENCE, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "InteligenceAbilityDescription.txt"), StandardCharsets.UTF_8));
             lvAbilitiesDescriptions.put(Abilities.WISDOM, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "WisdomAbilityDescription.txt"), StandardCharsets.UTF_8));
             lvAbilitiesDescriptions.put(Abilities.CHARISMA, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "CharismaAbilityDescription.txt"), StandardCharsets.UTF_8));
-        } catch (IOException ex) {
-            Logger.getLogger(AbillitiesSelectionWindow.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(AbillitiesSelectionWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(FileUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         BasicSelectionWindow lvWindow = new BasicSelectionWindow(2, 2, lvModel, lvAbilitiesDescriptions, "Ability", "Abilities", (AbilitiesSelectionWindowOpener)this);

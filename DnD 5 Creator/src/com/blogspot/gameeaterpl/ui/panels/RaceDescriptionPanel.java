@@ -6,12 +6,15 @@
 package com.blogspot.gameeaterpl.ui.panels;
 
 import com.blogspot.gameeaterpl.character.Races;
+import com.blogspot.gameeaterpl.utils.FileUtils;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +28,7 @@ import javax.imageio.ImageIO;
 public class RaceDescriptionPanel extends javax.swing.JPanel {
 
     HashMap<Races,String> mPictureLinks;
+    HashMap<Races,String> mDescriptionLinks;
     private final String mBackgroundUrl = "/com/blogspot/gameeaterpl/ui/panels/images/";
     BufferedImage img;
     File mFile;
@@ -35,13 +39,16 @@ public class RaceDescriptionPanel extends javax.swing.JPanel {
     public RaceDescriptionPanel() {
         
         initializePictureLinks();
-        try {
+        initializeDescriptions();
+        /*try {
            img = ImageIO.read(getClass().getResource(mPictureLinks.get(Races.DWARF)));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         
         initComponents();
+        
+        switchDescription(Races.DWARF);
     }
     
     //public RaceDescriptionPanel(String)
@@ -60,7 +67,22 @@ public class RaceDescriptionPanel extends javax.swing.JPanel {
         
     }
     
-    public void switchDescription(Races pmRace)
+    private void initializeDescriptions()
+    {
+        mDescriptionLinks = new HashMap<>();
+        mDescriptionLinks.put(Races.ELF, FileUtils.DESCRIPTION_URL+"EmptyRaceDescription.txt");
+        mDescriptionLinks.put(Races.DWARF, FileUtils.DESCRIPTION_URL + "DwarfRaceDescription.txt");
+        mDescriptionLinks.put(Races.HALFLING, FileUtils.DESCRIPTION_URL + "EmptyRaceDescription.txt");
+        mDescriptionLinks.put(Races.DRAGONBORN, FileUtils.DESCRIPTION_URL+"EmptyRaceDescription.txt");
+        mDescriptionLinks.put(Races.GNOME, FileUtils.DESCRIPTION_URL+"EmptyRaceDescription.txt");
+        mDescriptionLinks.put(Races.HALFELF, FileUtils.DESCRIPTION_URL+"EmptyRaceDescription.txt");
+        mDescriptionLinks.put(Races.HALFORC, FileUtils.DESCRIPTION_URL+"EmptyRaceDescription.txt");
+        mDescriptionLinks.put(Races.HUMAN, FileUtils.DESCRIPTION_URL+"EmptyRaceDescription.txt");
+        
+        
+    }
+    
+    public final void switchDescription(Races pmRace)
     {
         try {
            img = ImageIO.read(getClass().getResource(mPictureLinks.get(pmRace)));
@@ -69,6 +91,12 @@ public class RaceDescriptionPanel extends javax.swing.JPanel {
         }
         
         this.repaint();
+        
+        try {
+            this.raceDescriptionTextArea1.setText(FileUtils.readFile(this.getClass().getResource(mDescriptionLinks.get(pmRace)), StandardCharsets.UTF_8));
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(RaceDescriptionPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

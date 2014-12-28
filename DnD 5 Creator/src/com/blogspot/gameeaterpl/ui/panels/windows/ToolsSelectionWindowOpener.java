@@ -5,10 +5,13 @@
  */
 package com.blogspot.gameeaterpl.ui.panels.windows;
 
+import com.blogspot.gameeaterpl.enums.Tools;
+import java.util.List;
+
 /**
  *
  * @author Sakurazuka
  */
-public enum SelectionWindowMode {
-    ABILITIES,SKILLS,DRACONIC_ANCESTOR,TOOLS;
+public interface ToolsSelectionWindowOpener {
+    public void setToolsFields(List<Tools> pmToolsList);
 }

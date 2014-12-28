@@ -21,9 +21,10 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements Charac
      */
     public RaceSpecialChoicePanel() {
         initComponents();
+        this.switchCardByRace(Races.DWARF);
     }
     
-    public void switchCardByRace(Races pmRace)
+    public final void switchCardByRace(Races pmRace)
     {
         CardLayout lvLayout = (CardLayout) this.getLayout();
         switch(pmRace)
@@ -33,6 +34,9 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements Charac
                 break;
             case DRAGONBORN:
                 lvLayout.show(this, "card4");
+                break;
+            case DWARF:
+                lvLayout.show(this, "card5");
                 break;
             default:
                 lvLayout.show(this, "card3");
@@ -53,6 +57,7 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements Charac
         jPanel1 = new javax.swing.JPanel();
         humanOptionalRaceChoicePanel1 = new com.blogspot.gameeaterpl.ui.panels.HumanOptionalRaceChoicePanel();
         dragonbornOptionalRaceChoicePanel1 = new com.blogspot.gameeaterpl.ui.panels.DragonbornOptionalRaceChoicePanel();
+        dwarfOptionalRaceChoicePanel1 = new com.blogspot.gameeaterpl.ui.panels.DwarfOptionalRaceChoicePanel();
 
         setLayout(new java.awt.CardLayout());
 
@@ -60,7 +65,7 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements Charac
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 420, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,11 +75,13 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements Charac
         add(jPanel1, "card3");
         add(humanOptionalRaceChoicePanel1, "card2");
         add(dragonbornOptionalRaceChoicePanel1, "card4");
+        add(dwarfOptionalRaceChoicePanel1, "card5");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.blogspot.gameeaterpl.ui.panels.DragonbornOptionalRaceChoicePanel dragonbornOptionalRaceChoicePanel1;
+    private com.blogspot.gameeaterpl.ui.panels.DwarfOptionalRaceChoicePanel dwarfOptionalRaceChoicePanel1;
     private com.blogspot.gameeaterpl.ui.panels.HumanOptionalRaceChoicePanel humanOptionalRaceChoicePanel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
