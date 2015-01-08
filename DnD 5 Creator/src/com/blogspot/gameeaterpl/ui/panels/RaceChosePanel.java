@@ -5,6 +5,7 @@
  */
 package com.blogspot.gameeaterpl.ui.panels;
 
+import com.blogspot.gameeaterpl.character.Character;
 import com.blogspot.gameeaterpl.character.Races;
 import com.blogspot.gameeaterpl.character.Subraces;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.HashMap;
  *
  * @author sakurazuka
  */
-public class RaceChosePanel extends javax.swing.JPanel {
+public class RaceChosePanel extends javax.swing.JPanel implements CharacterCreatorPanel {
 
     HashMap<Races, ArrayList<Subraces>> mSubraceToRaceConnection;
 
@@ -207,4 +208,11 @@ public class RaceChosePanel extends javax.swing.JPanel {
     private javax.swing.JButton showPictureButton;
     private javax.swing.JComboBox subracesComboBox;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void fillCharacterObject(Character pmCharacter) {
+        
+        ((RaceSpecialChoicePanelInterface)raceSpecialChoicePanel1).addRace(pmCharacter, (Races)racesComboBox.getSelectedItem(), (Subraces)subracesComboBox.getSelectedItem());
+        
+    }
 }

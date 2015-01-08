@@ -12,11 +12,13 @@ import com.blogspot.gameeaterpl.character.DwarfRace;
 import com.blogspot.gameeaterpl.character.Races;
 import com.blogspot.gameeaterpl.character.SpecialAbility;
 import com.blogspot.gameeaterpl.character.Subraces;
+import com.blogspot.gameeaterpl.enums.ArmorTypes;
 import com.blogspot.gameeaterpl.enums.DamageType;
 import com.blogspot.gameeaterpl.enums.Languages;
 import com.blogspot.gameeaterpl.enums.MartialWeapons;
 import com.blogspot.gameeaterpl.enums.Skills;
 import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
+import com.blogspot.gameeaterpl.mechanics.DamageFormula;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,11 +28,11 @@ import java.util.HashMap;
  */
 public class CharacterRaceFactory {
 
-    public static CharacterRace buildCharacterRace(Races pmRace, Subraces pmSubrace, HashMap<Integer, ArrayList<AutomaterAttack>> pmAttacks, HashMap<Integer, ArrayList<AbilityIncrease>> pmAbilities, HashMap<Integer, ArrayList<Skills>> pmSkills, HashMap<Integer, ArrayList<SpecialAbility>> pmSpecialAbilities, HashMap<Integer, ArrayList<DamageType>> pmResistances, HashMap<Integer, ArrayList<CharacterTextFeature>> pmFeatures, HashMap<Integer, ArrayList<Languages>> pmLanguages, HashMap<Integer, ArrayList<MartialWeapons>> pmMartialWeapons) {
+    public static CharacterRace buildCharacterRace(Races pmRace, Subraces pmSubrace, HashMap<Integer, ArrayList<AutomaterAttack>> pmAttacks, HashMap<Integer, ArrayList<AbilityIncrease>> pmAbilities, HashMap<Integer, ArrayList<Skills>> pmSkills, HashMap<Integer, ArrayList<SpecialAbility>> pmSpecialAbilities, HashMap<Integer, ArrayList<DamageType>> pmResistances, HashMap<Integer, ArrayList<CharacterTextFeature>> pmFeatures, HashMap<Integer, ArrayList<Languages>> pmLanguages, HashMap<Integer, ArrayList<MartialWeapons>> pmMartialWeapons, HashMap<Integer,ArrayList<ArmorTypes>> pmArmorTypes, HashMap<Integer,ArrayList<DamageFormula>> pmHitPoints) {
         CharacterRace lvRace = null;
         switch (pmRace) {
             case DWARF:
-                lvRace = new DwarfRace(pmSubrace, pmAttacks, pmAbilities, pmSkills, pmSpecialAbilities, pmResistances, pmFeatures, pmLanguages, pmMartialWeapons);
+                lvRace = new DwarfRace(pmSubrace, pmAttacks, pmAbilities, pmSkills, pmSpecialAbilities, pmResistances, pmFeatures, pmLanguages, pmMartialWeapons, pmArmorTypes, pmHitPoints);
                 break;
         }
 

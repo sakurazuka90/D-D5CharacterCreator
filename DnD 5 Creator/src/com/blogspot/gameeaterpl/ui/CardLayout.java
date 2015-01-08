@@ -13,7 +13,7 @@ import com.blogspot.gameeaterpl.character.Character;
 public class CardLayout extends javax.swing.JPanel {
 
     private Integer mActiveCard = 0;
-    private String[] mCardNames = {"card2", "card3", "card4"};
+    private final String[] mCardNames = {"card2", "card3", "card4", "card5"};
 
     /**
      * Creates new form CardLayout
@@ -35,16 +35,19 @@ public class CardLayout extends javax.swing.JPanel {
         mainInfoPanel1 = new com.blogspot.gameeaterpl.ui.panels.MainInfoPanel();
         attributesTabbedPanel1 = new com.blogspot.gameeaterpl.ui.panels.AttributesTabbedPanel();
         raceChosePanel1 = new com.blogspot.gameeaterpl.ui.panels.RaceChosePanel();
+        classChoicePanel1 = new com.blogspot.gameeaterpl.ui.panels.ClassChoicePanel();
 
         setLayout(new java.awt.CardLayout());
         add(mainInfoPanel1, "card2");
         add(attributesTabbedPanel1, "card4");
         add(raceChosePanel1, "card3");
+        add(classChoicePanel1, "card5");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.blogspot.gameeaterpl.ui.panels.AttributesTabbedPanel attributesTabbedPanel1;
+    private com.blogspot.gameeaterpl.ui.panels.ClassChoicePanel classChoicePanel1;
     private com.blogspot.gameeaterpl.ui.panels.MainInfoPanel mainInfoPanel1;
     private com.blogspot.gameeaterpl.ui.panels.RaceChosePanel raceChosePanel1;
     // End of variables declaration//GEN-END:variables
@@ -82,6 +85,9 @@ public class CardLayout extends javax.swing.JPanel {
                 break;
             case 1:
                 attributesTabbedPanel1.fillCharacterObject(pmCharacter);
+                break;
+            case 2:
+                raceChosePanel1.fillCharacterObject(pmCharacter);
                 break;
             default:
                 break;

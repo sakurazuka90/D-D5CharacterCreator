@@ -5,9 +5,16 @@
  */
 package com.blogspot.gameeaterpl.ui.panels;
 
+import com.blogspot.gameeaterpl.character.Character;
+import com.blogspot.gameeaterpl.character.CharacterRace;
+import com.blogspot.gameeaterpl.character.Races;
+import com.blogspot.gameeaterpl.character.Subraces;
+import com.blogspot.gameeaterpl.character.factories.CharacterRaceFactory;
 import com.blogspot.gameeaterpl.enums.Tools;
+import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
 import com.blogspot.gameeaterpl.ui.panels.windows.BasicSelectionWindow;
 import com.blogspot.gameeaterpl.ui.panels.windows.ToolsSelectionWindowOpener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.AbstractListModel;
@@ -16,7 +23,7 @@ import javax.swing.AbstractListModel;
  *
  * @author Sakurazuka
  */
-public class DwarfOptionalRaceChoicePanel extends javax.swing.JPanel implements ToolsSelectionWindowOpener {
+public class DwarfOptionalRaceChoicePanel extends javax.swing.JPanel implements ToolsSelectionWindowOpener, RaceSpecialChoicePanelInterface {
 
     /**
      * Creates new form DwarfOptionalRaceChoicePanel
@@ -105,5 +112,12 @@ public class DwarfOptionalRaceChoicePanel extends javax.swing.JPanel implements 
     @Override
     public void setToolsFields(List<Tools> pmToolsList) {
         toolProficiencyField.setText(pmToolsList.get(0).toString());
+    }
+
+    @Override
+    public void addRace(Character pmCharacter, Races pmRace, Subraces pmSubrace) {
+        
+        CharacterRace lvRace = CharacterRaceFactory.buildCharacterRace(pmRace, pmSubrace, new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>());
+        pmCharacter.setmRace(lvRace);
     }
 }

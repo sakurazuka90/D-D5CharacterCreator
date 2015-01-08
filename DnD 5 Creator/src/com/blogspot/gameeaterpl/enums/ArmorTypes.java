@@ -3,22 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.blogspot.gameeaterpl.enums;
 
 /**
  *
- * @author Sakurazuka
+ * @author sakurazuka
  */
-public enum MartialWeapons {
+public enum ArmorTypes {
+    LIGHT("Light Armor"),MEDIUM("Medium Armor"),HEAVY("Heavy Armor");
     
-    BATTLEAXE("Battleaxe"),
-    HANDAXE("Handaxe"),
-    THROWING_HAMMER("Throwing Hammer"),
-    WARHAMMER("Warhammer");
-    
-    private final String mName;
+     private final String mName;
 
-    MartialWeapons(String pmName) {
+    ArmorTypes(String pmName) {
         this.mName = pmName;
     }
     

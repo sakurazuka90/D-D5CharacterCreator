@@ -36,7 +36,7 @@ public class CreationStepsPanel extends javax.swing.JPanel {
 
         jList1.setForeground(new java.awt.Color(254, 254, 254));
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Main Information", "Abilities", "Race" };
+            String[] strings = { "Main Information", "Abilities", "Race", "Class" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

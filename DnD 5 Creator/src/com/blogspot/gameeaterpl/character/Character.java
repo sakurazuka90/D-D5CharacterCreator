@@ -19,6 +19,8 @@ public class Character {
     private String mAlignment;
 
     private HashMap<Abilities, Ability> mAbilities;
+    
+    private CharacterRace mRace;
 
     public Character() {
         mAbilities = new HashMap<>();
@@ -28,6 +30,7 @@ public class Character {
         mAbilities.put(Abilities.INTELIGENCE, new Ability(Abilities.INTELIGENCE.toString()));
         mAbilities.put(Abilities.WISDOM, new Ability(Abilities.WISDOM.toString()));
         mAbilities.put(Abilities.CHARISMA, new Ability(Abilities.CHARISMA.toString()));
+        mRace = null;
     }
 
     public void printDataTest() {
@@ -41,6 +44,11 @@ public class Character {
         System.out.println("INT: " + mAbilities.get(Abilities.INTELIGENCE).getTestString());
         System.out.println("WIS: " + mAbilities.get(Abilities.WISDOM).getTestString());
         System.out.println("CHA: " + mAbilities.get(Abilities.CHARISMA).getTestString());
+        
+        if(mRace != null){
+            System.out.println("Rasa:");
+            System.out.println(mRace.getTestString());
+        }
     }
 
     public String getmCharacterName() {
@@ -99,5 +107,11 @@ public class Character {
         this.setWisdom(pmWisVal);
         this.setCharisma(pmChaVal);
     }
+
+    public void setmRace(CharacterRace mRace) {
+        this.mRace = mRace;
+    }
+    
+    
 
 }

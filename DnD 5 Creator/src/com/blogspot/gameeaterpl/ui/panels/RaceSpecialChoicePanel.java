@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.blogspot.gameeaterpl.ui.panels;
 
 import com.blogspot.gameeaterpl.character.Character;
+import com.blogspot.gameeaterpl.character.CharacterRace;
 import com.blogspot.gameeaterpl.character.Races;
+import com.blogspot.gameeaterpl.character.Subraces;
+import com.blogspot.gameeaterpl.character.factories.CharacterRaceFactory;
 import java.awt.CardLayout;
+import java.util.HashMap;
 
 /**
  *
  * @author sakurazuka
  */
-public class RaceSpecialChoicePanel extends javax.swing.JPanel implements CharacterCreatorPanel{
+public class RaceSpecialChoicePanel extends javax.swing.JPanel implements RaceSpecialChoicePanelInterface {
 
     /**
      * Creates new form RaceSpecialChoicePanel
@@ -23,12 +26,10 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements Charac
         initComponents();
         this.switchCardByRace(Races.DWARF);
     }
-    
-    public final void switchCardByRace(Races pmRace)
-    {
+
+    public final void switchCardByRace(Races pmRace) {
         CardLayout lvLayout = (CardLayout) this.getLayout();
-        switch(pmRace)
-        {
+        switch (pmRace) {
             case HUMAN:
                 lvLayout.show(this, "card2");
                 break;
@@ -43,7 +44,6 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements Charac
                 break;
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,7 +87,24 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements Charac
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void fillCharacterObject(Character pmCharacter) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addRace(Character pmCharacter, Races pmRace, Subraces pmSubrace) {
+
+        switch (pmRace) {
+            case HUMAN:
+                ((RaceSpecialChoicePanelInterface) humanOptionalRaceChoicePanel1).addRace(pmCharacter, pmRace, pmSubrace);
+                break;
+            case DRAGONBORN:
+                ((RaceSpecialChoicePanelInterface) dragonbornOptionalRaceChoicePanel1).addRace(pmCharacter, pmRace, pmSubrace);
+                break;
+            case DWARF:
+                ((RaceSpecialChoicePanelInterface) dwarfOptionalRaceChoicePanel1).addRace(pmCharacter, pmRace, pmSubrace);
+                break;
+            default:
+                CharacterRace lvRace = CharacterRaceFactory.buildCharacterRace(pmRace, pmSubrace, new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>());
+                pmCharacter.setmRace(lvRace);
+                break;
+        }
+
     }
+
 }
