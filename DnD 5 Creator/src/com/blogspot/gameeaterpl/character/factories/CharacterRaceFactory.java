@@ -5,22 +5,11 @@
  */
 package com.blogspot.gameeaterpl.character.factories;
 
-import com.blogspot.gameeaterpl.character.AbilityIncrease;
 import com.blogspot.gameeaterpl.character.CharacterRace;
-import com.blogspot.gameeaterpl.character.CharacterTextFeature;
 import com.blogspot.gameeaterpl.character.Races.DwarfRace;
+import com.blogspot.gameeaterpl.character.Races.ElfRace;
 import com.blogspot.gameeaterpl.enums.Races;
-import com.blogspot.gameeaterpl.character.SpecialAbility;
 import com.blogspot.gameeaterpl.character.Subraces;
-import com.blogspot.gameeaterpl.enums.ArmorTypes;
-import com.blogspot.gameeaterpl.enums.DamageType;
-import com.blogspot.gameeaterpl.enums.Languages;
-import com.blogspot.gameeaterpl.enums.MartialWeapons;
-import com.blogspot.gameeaterpl.enums.Skills;
-import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
-import com.blogspot.gameeaterpl.mechanics.DamageFormula;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
@@ -33,6 +22,9 @@ public class CharacterRaceFactory {
         switch (pmRace) {
             case DWARF:
                 lvRace = new DwarfRace(pmSubrace);
+                break;
+            case ELF:
+                lvRace = new ElfRace(pmSubrace);
                 break;
         }
 
