@@ -6,12 +6,12 @@
 package com.blogspot.gameeaterpl.ui.panels;
 
 import com.blogspot.gameeaterpl.character.Character;
+import com.blogspot.gameeaterpl.character.CharacterChoiceContainer;
 import com.blogspot.gameeaterpl.character.CharacterRace;
 import com.blogspot.gameeaterpl.character.Races;
 import com.blogspot.gameeaterpl.character.Subraces;
 import com.blogspot.gameeaterpl.character.factories.CharacterRaceFactory;
 import com.blogspot.gameeaterpl.enums.Tools;
-import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
 import com.blogspot.gameeaterpl.ui.panels.windows.BasicSelectionWindow;
 import com.blogspot.gameeaterpl.ui.panels.windows.ToolsSelectionWindowOpener;
 import java.util.ArrayList;
@@ -23,8 +23,10 @@ import javax.swing.AbstractListModel;
  *
  * @author Sakurazuka
  */
-public class DwarfOptionalRaceChoicePanel extends javax.swing.JPanel implements ToolsSelectionWindowOpener, RaceSpecialChoicePanelInterface {
+public class DwarfOptionalRaceChoicePanel extends javax.swing.JPanel implements ToolsSelectionWindowOpener, SpecialChoicePanelInterface {
 
+    private Tools mChosenTools;
+    
     /**
      * Creates new form DwarfOptionalRaceChoicePanel
      */
@@ -112,12 +114,23 @@ public class DwarfOptionalRaceChoicePanel extends javax.swing.JPanel implements 
     @Override
     public void setToolsFields(List<Tools> pmToolsList) {
         toolProficiencyField.setText(pmToolsList.get(0).toString());
+        mChosenTools = pmToolsList.get(0);
     }
 
     @Override
-    public void addRace(Character pmCharacter, Races pmRace, Subraces pmSubrace) {
+    public CharacterChoiceContainer getChoiceContainer() {
+        CharacterChoiceContainer lvChoiceValues = new CharacterChoiceContainer();
         
-        CharacterRace lvRace = CharacterRaceFactory.buildCharacterRace(pmRace, pmSubrace, new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>());
-        pmCharacter.setmRace(lvRace);
+        ArrayList<Tools> lvToolsList = new ArrayList<>();
+        HashMap<Integer,ArrayList<Tools>> lvToolsMap = new HashMap<>();
+        
+        if(mChosenTools != null)
+        lvToolsList.add(mChosenTools);
+        
+        lvToolsMap.put(1, lvToolsList);
+        
+        lvChoiceValues.setmTools(lvToolsMap);
+        
+        return lvChoiceValues;
     }
 }

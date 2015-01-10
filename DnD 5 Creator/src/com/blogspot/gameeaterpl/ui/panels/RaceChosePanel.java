@@ -213,6 +213,6 @@ public class RaceChosePanel extends javax.swing.JPanel implements CharacterCreat
     public void fillCharacterObject(Character pmCharacter) {
         
         ((RaceSpecialChoicePanelInterface)raceSpecialChoicePanel1).addRace(pmCharacter, (Races)racesComboBox.getSelectedItem(), (Subraces)subracesComboBox.getSelectedItem());
-        
+
     }
 }

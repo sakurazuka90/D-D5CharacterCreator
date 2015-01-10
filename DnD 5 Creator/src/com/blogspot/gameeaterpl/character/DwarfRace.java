@@ -30,9 +30,9 @@ public class DwarfRace extends CharacterRace {
     private static final String STONECUNNING = "Stonecunning";
     private static final String STONECUNNING_DESCRIPTION = "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.";
 
-    public DwarfRace(Subraces pmSubrace, HashMap<Integer, ArrayList<AutomaterAttack>> pmAttacks, HashMap<Integer, ArrayList<AbilityIncrease>> pmAbilities, HashMap<Integer, ArrayList<Skills>> pmSkills, HashMap<Integer, ArrayList<SpecialAbility>> pmSpecialAbilities, HashMap<Integer, ArrayList<DamageType>> pmResistances, HashMap<Integer, ArrayList<CharacterTextFeature>> pmFeatures, HashMap<Integer, ArrayList<Languages>> pmLanguages, HashMap<Integer, ArrayList<MartialWeapons>> pmMartialWeapons, HashMap<Integer, ArrayList<ArmorTypes>> pmArmorTypes, HashMap<Integer, ArrayList<DamageFormula>> pmHitPoints) {
+    public DwarfRace(Subraces pmSubrace) {
 
-        super(Races.DWARF, pmSubrace, Sizes.MEDIUM, 25, 60, pmAttacks, pmAbilities, pmSkills, pmSpecialAbilities, pmResistances, pmFeatures, pmLanguages, pmMartialWeapons, pmArmorTypes, pmHitPoints);
+        super(Races.DWARF, pmSubrace, Sizes.MEDIUM, 25, 60);
 
         ArrayList<DamageType> lvResistances;
         if (this.mResistances.containsKey(1)) {

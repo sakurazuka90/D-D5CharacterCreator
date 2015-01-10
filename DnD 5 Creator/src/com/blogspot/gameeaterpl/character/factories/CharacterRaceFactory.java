@@ -28,11 +28,11 @@ import java.util.HashMap;
  */
 public class CharacterRaceFactory {
 
-    public static CharacterRace buildCharacterRace(Races pmRace, Subraces pmSubrace, HashMap<Integer, ArrayList<AutomaterAttack>> pmAttacks, HashMap<Integer, ArrayList<AbilityIncrease>> pmAbilities, HashMap<Integer, ArrayList<Skills>> pmSkills, HashMap<Integer, ArrayList<SpecialAbility>> pmSpecialAbilities, HashMap<Integer, ArrayList<DamageType>> pmResistances, HashMap<Integer, ArrayList<CharacterTextFeature>> pmFeatures, HashMap<Integer, ArrayList<Languages>> pmLanguages, HashMap<Integer, ArrayList<MartialWeapons>> pmMartialWeapons, HashMap<Integer,ArrayList<ArmorTypes>> pmArmorTypes, HashMap<Integer,ArrayList<DamageFormula>> pmHitPoints) {
+    public static CharacterRace buildCharacterRace(Races pmRace, Subraces pmSubrace) {
         CharacterRace lvRace = null;
         switch (pmRace) {
             case DWARF:
-                lvRace = new DwarfRace(pmSubrace, pmAttacks, pmAbilities, pmSkills, pmSpecialAbilities, pmResistances, pmFeatures, pmLanguages, pmMartialWeapons, pmArmorTypes, pmHitPoints);
+                lvRace = new DwarfRace(pmSubrace);
                 break;
         }
 

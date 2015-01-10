@@ -6,6 +6,7 @@
 package com.blogspot.gameeaterpl.ui.panels;
 
 import com.blogspot.gameeaterpl.character.Character;
+import com.blogspot.gameeaterpl.character.CharacterChoiceContainer;
 import com.blogspot.gameeaterpl.character.CharacterRace;
 import com.blogspot.gameeaterpl.character.Races;
 import com.blogspot.gameeaterpl.character.Subraces;
@@ -89,21 +90,28 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements RaceSp
     @Override
     public void addRace(Character pmCharacter, Races pmRace, Subraces pmSubrace) {
 
+        CharacterChoiceContainer lvChoice;
+
         switch (pmRace) {
             case HUMAN:
-                ((RaceSpecialChoicePanelInterface) humanOptionalRaceChoicePanel1).addRace(pmCharacter, pmRace, pmSubrace);
+                lvChoice = ((SpecialChoicePanelInterface) humanOptionalRaceChoicePanel1).getChoiceContainer();
                 break;
             case DRAGONBORN:
-                ((RaceSpecialChoicePanelInterface) dragonbornOptionalRaceChoicePanel1).addRace(pmCharacter, pmRace, pmSubrace);
+                lvChoice = ((SpecialChoicePanelInterface) dragonbornOptionalRaceChoicePanel1).getChoiceContainer();
                 break;
             case DWARF:
-                ((RaceSpecialChoicePanelInterface) dwarfOptionalRaceChoicePanel1).addRace(pmCharacter, pmRace, pmSubrace);
+                lvChoice = ((SpecialChoicePanelInterface) dwarfOptionalRaceChoicePanel1).getChoiceContainer();
                 break;
             default:
-                CharacterRace lvRace = CharacterRaceFactory.buildCharacterRace(pmRace, pmSubrace, new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>());
-                pmCharacter.setmRace(lvRace);
+                lvChoice = new CharacterChoiceContainer();
                 break;
         }
+
+        CharacterRace lvRace = CharacterRaceFactory.buildCharacterRace(pmRace, pmSubrace);
+        lvChoice.fillCharacterPart(lvRace);
+        
+        
+        pmCharacter.setmRace(lvRace);
 
     }
 
