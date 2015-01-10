@@ -5,7 +5,7 @@
  */
 package com.blogspot.gameeaterpl.ui.panels;
 
-import com.blogspot.gameeaterpl.character.Races;
+import com.blogspot.gameeaterpl.enums.Races;
 import com.blogspot.gameeaterpl.utils.FileUtils;
 import java.awt.Color;
 import java.awt.Dimension;

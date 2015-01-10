@@ -8,7 +8,7 @@ package com.blogspot.gameeaterpl.ui.panels;
 import com.blogspot.gameeaterpl.character.Character;
 import com.blogspot.gameeaterpl.character.CharacterChoiceContainer;
 import com.blogspot.gameeaterpl.character.CharacterRace;
-import com.blogspot.gameeaterpl.character.Races;
+import com.blogspot.gameeaterpl.enums.Races;
 import com.blogspot.gameeaterpl.character.Subraces;
 import com.blogspot.gameeaterpl.character.factories.CharacterRaceFactory;
 import java.awt.CardLayout;

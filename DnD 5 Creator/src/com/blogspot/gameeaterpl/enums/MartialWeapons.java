@@ -14,7 +14,11 @@ public enum MartialWeapons {
     BATTLEAXE("Battleaxe"),
     HANDAXE("Handaxe"),
     THROWING_HAMMER("Throwing Hammer"),
-    WARHAMMER("Warhammer");
+    WARHAMMER("Warhammer"),
+    LONGSWORD("Longsword"),
+    SHORTSWORD("Shortsword"),
+    LONGBOW("Longbow"),
+    SHORTBOW("Shortbow");
     
     private final String mName;
 

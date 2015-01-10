@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blogspot.gameeaterpl.character;
+package com.blogspot.gameeaterpl.character.Races;
 
+import com.blogspot.gameeaterpl.character.AbilityIncrease;
+import com.blogspot.gameeaterpl.character.CharacterRace;
+import com.blogspot.gameeaterpl.character.CharacterTextFeature;
+import com.blogspot.gameeaterpl.enums.Races;
+import com.blogspot.gameeaterpl.character.Subraces;
 import com.blogspot.gameeaterpl.enums.Abilities;
 import com.blogspot.gameeaterpl.enums.ArmorTypes;
 import com.blogspot.gameeaterpl.enums.DamageType;
@@ -12,11 +17,8 @@ import com.blogspot.gameeaterpl.enums.Dice;
 import com.blogspot.gameeaterpl.enums.Languages;
 import com.blogspot.gameeaterpl.enums.MartialWeapons;
 import com.blogspot.gameeaterpl.enums.Sizes;
-import com.blogspot.gameeaterpl.enums.Skills;
-import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
 import com.blogspot.gameeaterpl.mechanics.DamageFormula;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
@@ -35,20 +37,15 @@ public class DwarfRace extends CharacterRace {
         super(Races.DWARF, pmSubrace, Sizes.MEDIUM, 25, 60);
 
         ArrayList<DamageType> lvResistances;
-        if (this.mResistances.containsKey(1)) {
-            lvResistances = this.mResistances.get(1);
-        } else {
-            lvResistances = new ArrayList<>();
-        }
+        lvResistances = new ArrayList<>();
+
         lvResistances.add(DamageType.POISON);
         this.mResistances.put(1, lvResistances);
 
         ArrayList<AbilityIncrease> lvAbilities;
-        if (this.mAbilities.containsKey(1)) {
-            lvAbilities = this.mAbilities.get(1);
-        } else {
-            lvAbilities = new ArrayList<>();
-        }
+
+        lvAbilities = new ArrayList<>();
+
         lvAbilities.add(new AbilityIncrease(Abilities.CONSTITUTION, 2));
 
         mAbilities.put(1, lvAbilities);
@@ -57,11 +54,8 @@ public class DwarfRace extends CharacterRace {
         CharacterTextFeature lvStonecunning = new CharacterTextFeature(STONECUNNING, STONECUNNING_DESCRIPTION);
 
         ArrayList<CharacterTextFeature> lvTextFeatures;
-        if (this.mFeatures.containsKey(1)) {
-            lvTextFeatures = this.mFeatures.get(1);
-        } else {
-            lvTextFeatures = new ArrayList<>();
-        }
+
+        lvTextFeatures = new ArrayList<>();
 
         lvTextFeatures.add(lvDvarwenResilience);
         lvTextFeatures.add(lvStonecunning);
@@ -69,11 +63,8 @@ public class DwarfRace extends CharacterRace {
         mFeatures.put(1, lvTextFeatures);
 
         ArrayList<MartialWeapons> lvMartialWeapons;
-        if (this.mMartialWeapons.containsKey(1)) {
-            lvMartialWeapons = this.mMartialWeapons.get(1);
-        } else {
-            lvMartialWeapons = new ArrayList<>();
-        }
+
+        lvMartialWeapons = new ArrayList<>();
 
         lvMartialWeapons.add(MartialWeapons.HANDAXE);
         lvMartialWeapons.add(MartialWeapons.BATTLEAXE);
@@ -83,11 +74,9 @@ public class DwarfRace extends CharacterRace {
         mMartialWeapons.put(1, lvMartialWeapons);
 
         ArrayList<Languages> lvLanguages;
-        if (this.mLanguages.containsKey(1)) {
-            lvLanguages = this.mLanguages.get(1);
-        } else {
-            lvLanguages = new ArrayList<>();
-        }
+
+        lvLanguages = new ArrayList<>();
+
         lvLanguages.add(Languages.DWARVISH);
         lvLanguages.add(Languages.COMMON);
 
@@ -101,11 +90,9 @@ public class DwarfRace extends CharacterRace {
                 mAbilities.put(1, lvAbilities);
 
                 ArrayList<ArmorTypes> lvArmors;
-                if (this.mArmorTypes.containsKey(1)) {
-                    lvArmors = this.mArmorTypes.get(1);
-                } else {
-                    lvArmors = new ArrayList<>();
-                }
+
+                lvArmors = new ArrayList<>();
+
                 lvArmors.add(ArmorTypes.LIGHT);
                 lvArmors.add(ArmorTypes.MEDIUM);
                 this.mArmorTypes.put(1, lvArmors);

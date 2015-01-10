@@ -6,7 +6,7 @@
 package com.blogspot.gameeaterpl.ui.panels;
 
 import com.blogspot.gameeaterpl.character.Character;
-import com.blogspot.gameeaterpl.character.Races;
+import com.blogspot.gameeaterpl.enums.Races;
 import com.blogspot.gameeaterpl.character.Subraces;
 import java.util.ArrayList;
 import java.util.HashMap;

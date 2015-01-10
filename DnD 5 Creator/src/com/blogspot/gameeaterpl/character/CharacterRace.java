@@ -5,6 +5,7 @@
  */
 package com.blogspot.gameeaterpl.character;
 
+import com.blogspot.gameeaterpl.enums.Races;
 import com.blogspot.gameeaterpl.enums.Sizes;
 
 /**
