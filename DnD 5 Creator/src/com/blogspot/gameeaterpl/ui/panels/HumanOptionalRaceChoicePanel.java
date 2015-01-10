@@ -184,14 +184,20 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //AbillitiesSelectionWindow lvWindow = new AbillitiesSelectionWindow(2, 2, this);
         AbstractListModel lvModel = new javax.swing.AbstractListModel() {
-            Abilities[] abilities = {Abilities.STRENGTH,Abilities.CONSTITUTION,Abilities.DEXTERITY,Abilities.INTELIGENCE,Abilities.WISDOM,Abilities.CHARISMA};
+            Abilities[] abilities = {Abilities.STRENGTH, Abilities.CONSTITUTION, Abilities.DEXTERITY, Abilities.INTELIGENCE, Abilities.WISDOM, Abilities.CHARISMA};
+
             @Override
-            public int getSize() { return abilities.length; }
+            public int getSize() {
+                return abilities.length;
+            }
+
             @Override
-            public Object getElementAt(int i) { return abilities[i]; }
+            public Object getElementAt(int i) {
+                return abilities[i];
+            }
         };
-        
-        HashMap<Object,String> lvAbilitiesDescriptions = new HashMap<>();
+
+        HashMap<Object, String> lvAbilitiesDescriptions = new HashMap<>();
 
         try {
             lvAbilitiesDescriptions.put(Abilities.STRENGTH, FileUtils.readFile(this.getClass().getResource(FileUtils.DESCRIPTION_URL + "StrengthAbilityDescription.txt"), StandardCharsets.UTF_8));
@@ -203,19 +209,19 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
         } catch (IOException | URISyntaxException ex) {
             Logger.getLogger(FileUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        BasicSelectionWindow lvWindow = new BasicSelectionWindow(2, 2, lvModel, lvAbilitiesDescriptions, "Ability", "Abilities", (AbilitiesSelectionWindowOpener)this);
-        
+
+        BasicSelectionWindow lvWindow = new BasicSelectionWindow(2, 2, lvModel, lvAbilitiesDescriptions, "Ability", "Abilities", (AbilitiesSelectionWindowOpener) this);
+
         lvWindow.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //SkillSelectionWindow lvWindow = new SkillSelectionWindow(1, 1, this, null, null);
-         ArrayList<Skills> lvList;
+        ArrayList<Skills> lvList;
         lvList = Skills.toList();
-        
-         AbstractListModel lvModel = new javax.swing.AbstractListModel() {
+
+        AbstractListModel lvModel = new javax.swing.AbstractListModel() {
             Skills[] skills = new Skills[lvList.size()];
+
             {
                 this.skills = lvList.toArray(skills);
             }
@@ -230,15 +236,14 @@ public class HumanOptionalRaceChoicePanel extends javax.swing.JPanel implements 
                 return skills[i];
             }
         };
-         
-          HashMap<Object,String> lvSkillsDescriptions = new HashMap<>();
-          
-          for(Skills lvSkill : lvList)
-          {
-              lvSkillsDescriptions.put(lvSkill, "");
-          }
-        BasicSelectionWindow lvWindow = new BasicSelectionWindow(1, 1, lvModel, lvSkillsDescriptions, "Skill", "Skills", (SkillsSelectionWindowOpener)this);
-       
+
+        HashMap<Object, String> lvSkillsDescriptions = new HashMap<>();
+
+        for (Skills lvSkill : lvList) {
+            lvSkillsDescriptions.put(lvSkill, "");
+        }
+        BasicSelectionWindow lvWindow = new BasicSelectionWindow(1, 1, lvModel, lvSkillsDescriptions, "Skill", "Skills", (SkillsSelectionWindowOpener) this);
+
         lvWindow.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -12,7 +12,6 @@ import com.blogspot.gameeaterpl.enums.Races;
 import com.blogspot.gameeaterpl.character.Subraces;
 import com.blogspot.gameeaterpl.character.factories.CharacterRaceFactory;
 import java.awt.CardLayout;
-import java.util.HashMap;
 
 /**
  *
@@ -40,8 +39,22 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements RaceSp
             case DWARF:
                 lvLayout.show(this, "card5");
                 break;
+            case ELF:
+                lvLayout.show(this, "card6");
+                break;
             default:
                 lvLayout.show(this, "card3");
+                break;
+        }
+    }
+
+    public void setControlsEnabledBySubrace(Subraces pmSubrace) {
+        switch (pmSubrace) {
+            case HIGHELF:
+                elfOptionalRaceChoicePanel1.setControlsEnabled(true);
+                break;
+            default:
+                elfOptionalRaceChoicePanel1.setControlsEnabled(false);
                 break;
         }
     }
@@ -59,6 +72,7 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements RaceSp
         humanOptionalRaceChoicePanel1 = new com.blogspot.gameeaterpl.ui.panels.HumanOptionalRaceChoicePanel();
         dragonbornOptionalRaceChoicePanel1 = new com.blogspot.gameeaterpl.ui.panels.DragonbornOptionalRaceChoicePanel();
         dwarfOptionalRaceChoicePanel1 = new com.blogspot.gameeaterpl.ui.panels.DwarfOptionalRaceChoicePanel();
+        elfOptionalRaceChoicePanel1 = new com.blogspot.gameeaterpl.ui.panels.ElfOptionalRaceChoicePanel();
 
         setLayout(new java.awt.CardLayout());
 
@@ -77,12 +91,14 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements RaceSp
         add(humanOptionalRaceChoicePanel1, "card2");
         add(dragonbornOptionalRaceChoicePanel1, "card4");
         add(dwarfOptionalRaceChoicePanel1, "card5");
+        add(elfOptionalRaceChoicePanel1, "card6");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.blogspot.gameeaterpl.ui.panels.DragonbornOptionalRaceChoicePanel dragonbornOptionalRaceChoicePanel1;
     private com.blogspot.gameeaterpl.ui.panels.DwarfOptionalRaceChoicePanel dwarfOptionalRaceChoicePanel1;
+    private com.blogspot.gameeaterpl.ui.panels.ElfOptionalRaceChoicePanel elfOptionalRaceChoicePanel1;
     private com.blogspot.gameeaterpl.ui.panels.HumanOptionalRaceChoicePanel humanOptionalRaceChoicePanel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
@@ -102,6 +118,9 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements RaceSp
             case DWARF:
                 lvChoice = ((SpecialChoicePanelInterface) dwarfOptionalRaceChoicePanel1).getChoiceContainer();
                 break;
+            case ELF:
+                lvChoice = ((SpecialChoicePanelInterface) elfOptionalRaceChoicePanel1).getChoiceContainer();
+                break;
             default:
                 lvChoice = new CharacterChoiceContainer();
                 break;
@@ -109,8 +128,7 @@ public class RaceSpecialChoicePanel extends javax.swing.JPanel implements RaceSp
 
         CharacterRace lvRace = CharacterRaceFactory.buildCharacterRace(pmRace, pmSubrace);
         lvChoice.fillCharacterPart(lvRace);
-        
-        
+
         pmCharacter.setmRace(lvRace);
 
     }

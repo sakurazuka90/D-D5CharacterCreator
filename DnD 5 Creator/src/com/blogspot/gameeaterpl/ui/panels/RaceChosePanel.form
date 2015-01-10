@@ -122,6 +122,9 @@
           <Connection code="new javax.swing.DefaultComboBoxModel(mSubraceToRaceConnection.get((Races)racesComboBox.getSelectedItem()).toArray())" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subracesComboBoxActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>

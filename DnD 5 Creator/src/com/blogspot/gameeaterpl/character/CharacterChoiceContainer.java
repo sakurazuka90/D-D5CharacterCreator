@@ -5,7 +5,6 @@
  */
 package com.blogspot.gameeaterpl.character;
 
-import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;

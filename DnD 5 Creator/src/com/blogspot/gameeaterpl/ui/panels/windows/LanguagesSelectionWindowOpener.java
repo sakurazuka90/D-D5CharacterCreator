@@ -5,10 +5,14 @@
  */
 package com.blogspot.gameeaterpl.ui.panels.windows;
 
+import com.blogspot.gameeaterpl.enums.Languages;
+import java.util.List;
+
 /**
  *
  * @author Sakurazuka
  */
-public enum SelectionWindowMode {
-    ABILITIES,SKILLS,DRACONIC_ANCESTOR,TOOLS,LANGUAGES;
+public interface LanguagesSelectionWindowOpener {
+
+    public void setLanguagesFields(List<Languages> pmLanguagesList);
 }

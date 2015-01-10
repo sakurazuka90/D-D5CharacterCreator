@@ -6,6 +6,7 @@
 package com.blogspot.gameeaterpl.ui.panels.windows;
 
 import com.blogspot.gameeaterpl.enums.Abilities;
+import com.blogspot.gameeaterpl.enums.Languages;
 import com.blogspot.gameeaterpl.enums.Skills;
 import com.blogspot.gameeaterpl.enums.Tools;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ public class BasicSelectionWindow extends javax.swing.JFrame {
     private AbilitiesSelectionWindowOpener mAbilitiesSelectionWindowOpener;
     private SkillsSelectionWindowOpener mSkillsSelectionWindowOpener;
     private ToolsSelectionWindowOpener mToolsSelectionWindowOpener;
+    private LanguagesSelectionWindowOpener mLanguagesSelectionWindowOpener;
 
     private final AbstractListModel mListModel;
     private HashMap<Object, String> mDescriptions;
@@ -134,12 +136,20 @@ public class BasicSelectionWindow extends javax.swing.JFrame {
         this.mSkillsSelectionWindowOpener = pmOpener;
 
     }
-    
-     public BasicSelectionWindow(Integer pmMaxSelected, Integer pmMinSelected, AbstractListModel pmListModel, HashMap<Object, String> pmDescriptions, String pmSingularDesc, String pmPluralDesc, ToolsSelectionWindowOpener pmOpener) {
+
+    public BasicSelectionWindow(Integer pmMaxSelected, Integer pmMinSelected, AbstractListModel pmListModel, HashMap<Object, String> pmDescriptions, String pmSingularDesc, String pmPluralDesc, ToolsSelectionWindowOpener pmOpener) {
         this(pmMaxSelected, pmMinSelected, pmListModel, pmDescriptions, pmSingularDesc, pmPluralDesc);
 
         this.mMode = SelectionWindowMode.TOOLS;
         this.mToolsSelectionWindowOpener = pmOpener;
+
+    }
+
+    public BasicSelectionWindow(Integer pmMaxSelected, Integer pmMinSelected, AbstractListModel pmListModel, HashMap<Object, String> pmDescriptions, String pmSingularDesc, String pmPluralDesc, LanguagesSelectionWindowOpener pmOpener) {
+        this(pmMaxSelected, pmMinSelected, pmListModel, pmDescriptions, pmSingularDesc, pmPluralDesc);
+
+        this.mMode = SelectionWindowMode.LANGUAGES;
+        this.mLanguagesSelectionWindowOpener = pmOpener;
 
     }
 
@@ -293,19 +303,20 @@ public class BasicSelectionWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
-        switch(this.mMode)
-        {
+        switch (this.mMode) {
             case ABILITIES:
-                this.mAbilitiesSelectionWindowOpener.setAbilitiesFields((List<Abilities>)list.getSelectedValuesList());
+                this.mAbilitiesSelectionWindowOpener.setAbilitiesFields((List<Abilities>) list.getSelectedValuesList());
                 break;
             case SKILLS:
-                this.mSkillsSelectionWindowOpener.setSkillsFields((List<Skills>)list.getSelectedValuesList());
+                this.mSkillsSelectionWindowOpener.setSkillsFields((List<Skills>) list.getSelectedValuesList());
                 break;
             case TOOLS:
-                this.mToolsSelectionWindowOpener.setToolsFields((List<Tools>)list.getSelectedValuesList());
+                this.mToolsSelectionWindowOpener.setToolsFields((List<Tools>) list.getSelectedValuesList());
                 break;
+            case LANGUAGES:
+                this.mLanguagesSelectionWindowOpener.setLanguagesFields((List<Languages>) list.getSelectedValuesList());
         }
-        
+
         this.dispose();
     }//GEN-LAST:event_acceptButtonActionPerformed
 

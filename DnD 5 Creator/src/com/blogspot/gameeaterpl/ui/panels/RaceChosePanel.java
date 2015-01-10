@@ -110,6 +110,11 @@ public class RaceChosePanel extends javax.swing.JPanel implements CharacterCreat
         jLabel3.setText("Subrace:");
 
         subracesComboBox.setModel(new javax.swing.DefaultComboBoxModel(mSubraceToRaceConnection.get((Races)racesComboBox.getSelectedItem()).toArray()));
+        subracesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subracesComboBoxActionPerformed(evt);
+            }
+        });
 
         jButton2.setText(">>");
 
@@ -120,26 +125,21 @@ public class RaceChosePanel extends javax.swing.JPanel implements CharacterCreat
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(subracesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(racesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(showPictureButton))
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(subracesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(raceSpecialChoicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)))
+                        .addComponent(racesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(showPictureButton))
+                    .addComponent(jLabel3)
+                    .addComponent(raceSpecialChoicePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(raceDescriptionPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -193,8 +193,13 @@ public class RaceChosePanel extends javax.swing.JPanel implements CharacterCreat
         raceDescriptionPanel1.switchDescription((Races) racesComboBox.getSelectedItem());
         //Wyświetlamy sekcję dodatkową (jeśli potrzebna)
         raceSpecialChoicePanel1.switchCardByRace((Races) racesComboBox.getSelectedItem());
-        
+        //Sprawdzamy czy nie włączyła się podrasa HighElfa (przy przełączeniu na Elfa)
+        raceSpecialChoicePanel1.setControlsEnabledBySubrace((Subraces)subracesComboBox.getSelectedItem());
     }//GEN-LAST:event_racesComboBoxActionPerformed
+
+    private void subracesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subracesComboBoxActionPerformed
+        raceSpecialChoicePanel1.setControlsEnabledBySubrace((Subraces)subracesComboBox.getSelectedItem());
+    }//GEN-LAST:event_subracesComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
