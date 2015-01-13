@@ -10,6 +10,12 @@
 <project name="DnD_5_Creator" default="default" basedir=".">
     <description>Builds, tests, and runs the project DnD 5 Creator.</description>
     <import file="nbproject/build-impl.xml"/>
+    <target name="-post-jar">
+     <mkdir dir="${dist.dir}/res"/>
+     <copy todir="${dist.dir}/res">
+         <fileset dir="${basedir}/res" />
+     </copy>
+    </target>
     <!--
 
     There exist several targets which are by default empty and which can be 
