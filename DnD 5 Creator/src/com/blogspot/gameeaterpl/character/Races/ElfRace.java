@@ -8,14 +8,21 @@ package com.blogspot.gameeaterpl.character.Races;
 import com.blogspot.gameeaterpl.character.AbilityIncrease;
 import com.blogspot.gameeaterpl.character.CharacterRace;
 import com.blogspot.gameeaterpl.character.CharacterTextFeature;
+import com.blogspot.gameeaterpl.character.Spells.SpellXmlParser;
 import com.blogspot.gameeaterpl.character.Subraces;
 import com.blogspot.gameeaterpl.enums.Abilities;
+import com.blogspot.gameeaterpl.enums.Classes;
 import com.blogspot.gameeaterpl.enums.Languages;
 import com.blogspot.gameeaterpl.enums.MartialWeapons;
 import com.blogspot.gameeaterpl.enums.Races;
 import com.blogspot.gameeaterpl.enums.Sizes;
 import com.blogspot.gameeaterpl.enums.Skills;
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -32,7 +39,6 @@ public class ElfRace extends CharacterRace {
     private static final String MASK_OF_THE__WILD = "Mask of the Wild";
     private static final String MASK_OF_THE__WILD_DESCRIPTION = "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.";
 
-    
     public ElfRace(Subraces pmSubrace) {
         super(Races.ELF, pmSubrace, Sizes.MEDIUM, 30, 60);
 
@@ -79,13 +85,31 @@ public class ElfRace extends CharacterRace {
                 lvMartialWeapons.add(MartialWeapons.LONGSWORD);
 
                 mMartialWeapons.put(1, lvMartialWeapons);
+
+//                //parser xml
+//                DocumentBuilderFactory builderFactory
+//                        = DocumentBuilderFactory.newInstance();
+//                DocumentBuilder builder = null;
+//                try {
+//                    builder = builderFactory.newDocumentBuilder();
+//                    System.out.println(System.getProperty( "user.dir" ));  
+//                    Document lvDocument = builder.parse(new FileInputStream(System.getProperty( "user.dir" )+"/res/spells.xml"));
+//                    lvDocument.normalize();
+//                    NodeList lvDocumentList = lvDocument.getElementsByTagName("Spell");
+//                    System.out.println("Total number of Spells:" + lvDocumentList.getLength());
+//                    
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+
+                SpellXmlParser.getSpellListByClassAndLevel(Classes.WIZARD.toString(), 0);
                 break;
             case WOODELF:
                 lvAbilities = this.mAbilities.get(1);
                 lvAbilities.add(new AbilityIncrease(Abilities.WISDOM, 1));
 
                 mAbilities.put(1, lvAbilities);
-                
+
                 lvMartialWeapons = new ArrayList<>();
 
                 lvMartialWeapons.add(MartialWeapons.SHORTBOW);
@@ -94,24 +118,23 @@ public class ElfRace extends CharacterRace {
                 lvMartialWeapons.add(MartialWeapons.LONGSWORD);
 
                 mMartialWeapons.put(1, lvMartialWeapons);
-                
+
                 mSpeed += 5;
-                
+
                 lvFeatures = mFeatures.get(1);
                 lvFeatures.add(new CharacterTextFeature(MASK_OF_THE__WILD, MASK_OF_THE__WILD_DESCRIPTION));
                 mFeatures.put(1, lvFeatures);
-                
+
                 break;
             case DARKELF:
                 lvAbilities = this.mAbilities.get(1);
                 lvAbilities.add(new AbilityIncrease(Abilities.CHARISMA, 1));
 
                 mAbilities.put(1, lvAbilities);
-                
+
                 mDarkVision += 60;
-                
+
                 //TODO: Drow magic!!!! Drow weapon training!!!!
-                
                 break;
         }
     }

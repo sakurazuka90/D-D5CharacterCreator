@@ -18,7 +18,7 @@ import java.nio.file.Paths;
  */
 public final class FileUtils {
 
-    public static final String DESCRIPTION_URL = "/com/blogspot/gameeaterpl/ui/resources/descriptions/";
+    public static final String DESCRIPTION_URL = "com/blogspot/gameeaterpl/ui/resources/descriptions/";
     
     /**
      * Czyta plik do Stringa. Wymaga Javy 7

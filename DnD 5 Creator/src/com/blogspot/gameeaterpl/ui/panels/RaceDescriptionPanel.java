@@ -92,11 +92,7 @@ public class RaceDescriptionPanel extends javax.swing.JPanel {
         
         this.repaint();
         
-        try {
-            this.raceDescriptionTextArea1.setText(FileUtils.readFile(this.getClass().getResource(mDescriptionLinks.get(pmRace)), StandardCharsets.UTF_8));
-        } catch (IOException | URISyntaxException ex) {
-            Logger.getLogger(RaceDescriptionPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.raceDescriptionTextArea1.setText(/*FileUtils.readFile(this.getClass().getResource(mDescriptionLinks.get(pmRace))*, StandardCharsets.UTF_8)*/"");
     }
 
     @Override

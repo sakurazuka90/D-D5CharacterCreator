@@ -3,9 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.blogspot.gameeaterpl.character.Spells;
 
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
@@ -13,5 +23,39 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author sakurazuka
  */
 public class SpellXmlParser extends DefaultHandler {
-    
+
+    public static ArrayList<Spell> getSpellListByClassAndLevel(String pmClass, Integer lvLevel) {
+        ArrayList<Spell> lvSpellList = new ArrayList<>();
+
+        //parser xml
+        DocumentBuilderFactory builderFactory
+                = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = null;
+        try {
+            builder = builderFactory.newDocumentBuilder();
+            System.out.println(System.getProperty("user.dir"));
+            Document lvDocument = builder.parse(new FileInputStream(System.getProperty("user.dir") + "/res/spells.xml"));
+            lvDocument.normalize();
+            //NodeList lvDocumentList = lvDocument.getElementsByTagName("Spell");
+
+            XPathFactory xPathfactory = XPathFactory.newInstance();
+            XPath xpath = xPathfactory.newXPath();
+            XPathExpression expr = xpath.compile("/Spell_List/Spell[Level[@Class='" + pmClass + "' and @Value='" + lvLevel + "']]");
+            
+            NodeList nl = (NodeList) expr.evaluate(lvDocument, XPathConstants.NODESET);
+            
+            for(int i = 0; i< nl.getLength(); i++)
+            {
+                Element lvSpell = (Element) nl.item(i);
+                //System.out.print(((Element)lvSpell.getElementsByTagName("Name").item(0)).getTextContent());
+                lvSpellList.add(new Spell(lvSpell));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return lvSpellList;
+    }
+
 }
