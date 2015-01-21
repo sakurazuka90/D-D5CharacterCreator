@@ -6,10 +6,16 @@
 package com.blogspot.gameeaterpl.ui.panels;
 
 import com.blogspot.gameeaterpl.character.CharacterChoiceContainer;
+import com.blogspot.gameeaterpl.character.Spells.Spell;
+import com.blogspot.gameeaterpl.character.Spells.SpellXmlParser;
+import com.blogspot.gameeaterpl.enums.Classes;
 import com.blogspot.gameeaterpl.enums.Languages;
+import com.blogspot.gameeaterpl.enums.Skills;
 import com.blogspot.gameeaterpl.enums.Tools;
 import com.blogspot.gameeaterpl.ui.panels.windows.BasicSelectionWindow;
 import com.blogspot.gameeaterpl.ui.panels.windows.LanguagesSelectionWindowOpener;
+import com.blogspot.gameeaterpl.ui.panels.windows.SkillsSelectionWindowOpener;
+import com.blogspot.gameeaterpl.ui.panels.windows.SpellSelectionWindowOpener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,18 +25,18 @@ import javax.swing.AbstractListModel;
  *
  * @author Sakurazuka
  */
-public class ElfOptionalRaceChoicePanel extends javax.swing.JPanel implements LanguagesSelectionWindowOpener, SpecialChoicePanelInterface {
+public class ElfOptionalRaceChoicePanel extends javax.swing.JPanel implements LanguagesSelectionWindowOpener, SpellSelectionWindowOpener, SpecialChoicePanelInterface {
 
     private Languages mChosenLanguage;
+
     /**
      * Creates new form ElfOptionalRaceChoicePanel
      */
     public ElfOptionalRaceChoicePanel() {
         initComponents();
     }
-    
-    public void setControlsEnabled(boolean isEnabled)
-    {
+
+    public void setControlsEnabled(boolean isEnabled) {
         cantripField.setEnabled(isEnabled);
         languageField.setEnabled(isEnabled);
         chooseCantripButton.setEnabled(isEnabled);
@@ -61,6 +67,11 @@ public class ElfOptionalRaceChoicePanel extends javax.swing.JPanel implements La
         jLabel2.setText("Choose one Language*");
 
         chooseCantripButton.setText("Choose");
+        chooseCantripButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseCantripButtonActionPerformed(evt);
+            }
+        });
 
         chooseLanguageButton.setText("Choose");
         chooseLanguageButton.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +169,43 @@ public class ElfOptionalRaceChoicePanel extends javax.swing.JPanel implements La
         lvWindow.setVisible(true);
     }//GEN-LAST:event_chooseLanguageButtonActionPerformed
 
+    private void chooseCantripButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseCantripButtonActionPerformed
+
+        ArrayList<Spell> lvWizardCantrips = SpellXmlParser.getSpellListByClassAndLevel(Classes.WIZARD.toString(), 0);
+
+        ArrayList<String> lvList = new ArrayList<>();
+        HashMap<Object, String> lvSpellsDescriptions = new HashMap<>();
+        
+        for(Spell lvSpell : lvWizardCantrips)
+        {
+            lvList.add(lvSpell.getmName());
+            lvSpellsDescriptions.put(lvSpell.getmName(), lvSpell.getmDescription());
+        }
+        
+
+        AbstractListModel lvModel = new javax.swing.AbstractListModel() {
+            String[] spells = new String[lvList.size()];
+
+            {
+                this.spells = lvList.toArray(spells);
+            }
+
+            @Override
+            public int getSize() {
+                return spells.length;
+            }
+
+            @Override
+            public Object getElementAt(int i) {
+                return spells[i];
+            }
+        };
+
+        BasicSelectionWindow lvWindow = new BasicSelectionWindow(1, 1, lvModel, lvSpellsDescriptions, "Spell", "Spells", (SpellSelectionWindowOpener) this);
+
+        lvWindow.setVisible(true);
+    }//GEN-LAST:event_chooseCantripButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cantripField;
@@ -178,21 +226,25 @@ public class ElfOptionalRaceChoicePanel extends javax.swing.JPanel implements La
     @Override
     public CharacterChoiceContainer getChoiceContainer() {
         CharacterChoiceContainer lvChoiceValues = new CharacterChoiceContainer();
-        
-        if(languageField.isEnabled() && cantripField.isEnabled())
-        {
+
+        if (languageField.isEnabled() && cantripField.isEnabled()) {
             ArrayList<Languages> lvLanguagesList = new ArrayList<>();
-        HashMap<Integer,ArrayList<Languages>> lvLanguagesMap = new HashMap<>();
-        
-        if(mChosenLanguage != null)
-        lvLanguagesList.add(mChosenLanguage);
-        
-        lvLanguagesMap.put(1, lvLanguagesList);
-        
-        lvChoiceValues.setmLanguages(lvLanguagesMap);
+            HashMap<Integer, ArrayList<Languages>> lvLanguagesMap = new HashMap<>();
+
+            if (mChosenLanguage != null) {
+                lvLanguagesList.add(mChosenLanguage);
+            }
+
+            lvLanguagesMap.put(1, lvLanguagesList);
+
+            lvChoiceValues.setmLanguages(lvLanguagesMap);
         }
-        
-        
+
         return lvChoiceValues;
+    }
+
+    @Override
+    public void setSpellsFields(List<String> pmAbilitiesList) {
+        cantripField.setText(pmAbilitiesList.get(0));
     }
 }

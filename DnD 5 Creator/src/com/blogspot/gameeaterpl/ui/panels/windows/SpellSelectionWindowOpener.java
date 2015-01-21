@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.blogspot.gameeaterpl.ui.panels.windows;
+
+import java.util.List;
 
 /**
  *
- * @author Sakurazuka
+ * @author sakurazuka
  */
-public enum SelectionWindowMode {
-    ABILITIES,SKILLS,DRACONIC_ANCESTOR,TOOLS,LANGUAGES,SPELLS;
+public interface SpellSelectionWindowOpener {
+
+    public void setSpellsFields(List<String> pmAbilitiesList);
+
 }

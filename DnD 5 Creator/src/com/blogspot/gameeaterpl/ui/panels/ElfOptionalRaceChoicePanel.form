@@ -102,6 +102,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Choose"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chooseCantripButtonActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="chooseCantripButton.setEnabled(false);"/>
       </AuxValues>

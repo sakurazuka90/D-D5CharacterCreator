@@ -27,6 +27,7 @@ public class BasicSelectionWindow extends javax.swing.JFrame {
     private AbilitiesSelectionWindowOpener mAbilitiesSelectionWindowOpener;
     private SkillsSelectionWindowOpener mSkillsSelectionWindowOpener;
     private ToolsSelectionWindowOpener mToolsSelectionWindowOpener;
+    private SpellSelectionWindowOpener mSpellsSelectionWindowOpener;
     private LanguagesSelectionWindowOpener mLanguagesSelectionWindowOpener;
 
     private final AbstractListModel mListModel;
@@ -63,6 +64,7 @@ public class BasicSelectionWindow extends javax.swing.JFrame {
         this.mAbilitiesSelectionWindowOpener = null;
         this.mSkillsSelectionWindowOpener = null;
         this.mToolsSelectionWindowOpener = null;
+        this.mSpellsSelectionWindowOpener = null;
 
         this.mMaxSelected = list.getModel().getSize();
         this.mMinSelected = 0;
@@ -150,6 +152,14 @@ public class BasicSelectionWindow extends javax.swing.JFrame {
 
         this.mMode = SelectionWindowMode.LANGUAGES;
         this.mLanguagesSelectionWindowOpener = pmOpener;
+
+    }
+
+    public BasicSelectionWindow(Integer pmMaxSelected, Integer pmMinSelected, AbstractListModel pmListModel, HashMap<Object, String> pmDescriptions, String pmSingularDesc, String pmPluralDesc, SpellSelectionWindowOpener pmOpener) {
+        this(pmMaxSelected, pmMinSelected, pmListModel, pmDescriptions, pmSingularDesc, pmPluralDesc);
+
+        this.mMode = SelectionWindowMode.SPELLS;
+        this.mSpellsSelectionWindowOpener = pmOpener;
 
     }
 
@@ -315,6 +325,8 @@ public class BasicSelectionWindow extends javax.swing.JFrame {
                 break;
             case LANGUAGES:
                 this.mLanguagesSelectionWindowOpener.setLanguagesFields((List<Languages>) list.getSelectedValuesList());
+            case SPELLS:
+                this.mSpellsSelectionWindowOpener.setSpellsFields((List<String>)list.getSelectedValuesList());
         }
 
         this.dispose();

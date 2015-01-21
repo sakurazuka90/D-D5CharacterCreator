@@ -44,4 +44,18 @@ public class Spell {
 
         mLevels = lvLevelsMap;
     }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public String getmDescription() {
+        return mDescription;
+    }
+
+    public HashMap<Classes, Integer> getmLevels() {
+        return mLevels;
+    }
+    
+    
 }
