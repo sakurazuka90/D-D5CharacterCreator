@@ -8,21 +8,16 @@ package com.blogspot.gameeaterpl.character.Races;
 import com.blogspot.gameeaterpl.character.AbilityIncrease;
 import com.blogspot.gameeaterpl.character.CharacterRace;
 import com.blogspot.gameeaterpl.character.CharacterTextFeature;
+import com.blogspot.gameeaterpl.character.Spells.Spell;
 import com.blogspot.gameeaterpl.character.Spells.SpellXmlParser;
 import com.blogspot.gameeaterpl.character.Subraces;
 import com.blogspot.gameeaterpl.enums.Abilities;
-import com.blogspot.gameeaterpl.enums.Classes;
 import com.blogspot.gameeaterpl.enums.Languages;
 import com.blogspot.gameeaterpl.enums.MartialWeapons;
 import com.blogspot.gameeaterpl.enums.Races;
 import com.blogspot.gameeaterpl.enums.Sizes;
 import com.blogspot.gameeaterpl.enums.Skills;
-import java.io.FileInputStream;
 import java.util.ArrayList;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 
 /**
  *
@@ -85,24 +80,6 @@ public class ElfRace extends CharacterRace {
                 lvMartialWeapons.add(MartialWeapons.LONGSWORD);
 
                 mMartialWeapons.put(1, lvMartialWeapons);
-
-//                //parser xml
-//                DocumentBuilderFactory builderFactory
-//                        = DocumentBuilderFactory.newInstance();
-//                DocumentBuilder builder = null;
-//                try {
-//                    builder = builderFactory.newDocumentBuilder();
-//                    System.out.println(System.getProperty( "user.dir" ));  
-//                    Document lvDocument = builder.parse(new FileInputStream(System.getProperty( "user.dir" )+"/res/spells.xml"));
-//                    lvDocument.normalize();
-//                    NodeList lvDocumentList = lvDocument.getElementsByTagName("Spell");
-//                    System.out.println("Total number of Spells:" + lvDocumentList.getLength());
-//                    
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-
-                SpellXmlParser.getSpellListByClassAndLevel(Classes.WIZARD.toString(), 0);
                 break;
             case WOODELF:
                 lvAbilities = this.mAbilities.get(1);
@@ -133,8 +110,20 @@ public class ElfRace extends CharacterRace {
                 mAbilities.put(1, lvAbilities);
 
                 mDarkVision += 60;
+                
+                ArrayList<Spell> lvSpellsLvl0 = new ArrayList<>();
+                ArrayList<Spell> lvSpellsLvl1 = new ArrayList<>();
+                ArrayList<Spell> lvSpellsLvl2 = new ArrayList<>();
+                
+                lvSpellsLvl0.add(SpellXmlParser.getSpellListBySpellName("Dancing Lights"));
+                lvSpellsLvl1.add(SpellXmlParser.getSpellListBySpellName("Faerie Fire"));
+                lvSpellsLvl2.add(SpellXmlParser.getSpellListBySpellName("Darkness"));
+                
+                this.mSpells.put(1, lvSpellsLvl0);
+                this.mSpells.put(3, lvSpellsLvl1);
+                this.mSpells.put(5, lvSpellsLvl2);
 
-                //TODO: Drow magic!!!! Drow weapon training!!!!
+                
                 break;
         }
     }

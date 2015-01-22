@@ -325,8 +325,10 @@ public class BasicSelectionWindow extends javax.swing.JFrame {
                 break;
             case LANGUAGES:
                 this.mLanguagesSelectionWindowOpener.setLanguagesFields((List<Languages>) list.getSelectedValuesList());
+                break;
             case SPELLS:
                 this.mSpellsSelectionWindowOpener.setSpellsFields((List<String>)list.getSelectedValuesList());
+                break;
         }
 
         this.dispose();

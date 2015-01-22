@@ -5,6 +5,7 @@
  */
 package com.blogspot.gameeaterpl.character;
 
+import com.blogspot.gameeaterpl.character.Spells.Spell;
 import com.blogspot.gameeaterpl.enums.ArmorTypes;
 import com.blogspot.gameeaterpl.enums.DamageType;
 import com.blogspot.gameeaterpl.enums.Languages;
@@ -34,6 +35,7 @@ public abstract class CharacterPart {
     protected HashMap<Integer,ArrayList<MartialWeapons>> mMartialWeapons;
     protected HashMap<Integer,ArrayList<ArmorTypes>> mArmorTypes;
     protected HashMap<Integer,ArrayList<DamageFormula>> mHitPoints;
+    protected HashMap<Integer,ArrayList<Spell>> mSpells;
 
     protected CharacterPart()
     {
@@ -86,6 +88,7 @@ public abstract class CharacterPart {
         this.mMartialWeapons = new HashMap<>();
         this.mArmorTypes = new HashMap<>();
         this.mHitPoints = new HashMap<>();
+        this.mSpells = new HashMap<>();
     }
 
     public void setmAttacks(HashMap<Integer, ArrayList<AutomaterAttack>> mAttacks) {
@@ -175,6 +178,15 @@ public abstract class CharacterPart {
     public void setmTools(HashMap<Integer, ArrayList<Tools>> mTools) {
         this.mTools = mTools;
     }
+
+    public HashMap<Integer, ArrayList<Spell>> getmSpells() {
+        return mSpells;
+    }
+
+    public void setmSpells(HashMap<Integer, ArrayList<Spell>> mSpells) {
+        this.mSpells = mSpells;
+    }
+    
     
     
     

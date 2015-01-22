@@ -10,11 +10,8 @@ import com.blogspot.gameeaterpl.character.Spells.Spell;
 import com.blogspot.gameeaterpl.character.Spells.SpellXmlParser;
 import com.blogspot.gameeaterpl.enums.Classes;
 import com.blogspot.gameeaterpl.enums.Languages;
-import com.blogspot.gameeaterpl.enums.Skills;
-import com.blogspot.gameeaterpl.enums.Tools;
 import com.blogspot.gameeaterpl.ui.panels.windows.BasicSelectionWindow;
 import com.blogspot.gameeaterpl.ui.panels.windows.LanguagesSelectionWindowOpener;
-import com.blogspot.gameeaterpl.ui.panels.windows.SkillsSelectionWindowOpener;
 import com.blogspot.gameeaterpl.ui.panels.windows.SpellSelectionWindowOpener;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -175,13 +172,11 @@ public class ElfOptionalRaceChoicePanel extends javax.swing.JPanel implements La
 
         ArrayList<String> lvList = new ArrayList<>();
         HashMap<Object, String> lvSpellsDescriptions = new HashMap<>();
-        
-        for(Spell lvSpell : lvWizardCantrips)
-        {
+
+        for (Spell lvSpell : lvWizardCantrips) {
             lvList.add(lvSpell.getmName());
             lvSpellsDescriptions.put(lvSpell.getmName(), lvSpell.getmDescription());
         }
-        
 
         AbstractListModel lvModel = new javax.swing.AbstractListModel() {
             String[] spells = new String[lvList.size()];
@@ -238,6 +233,17 @@ public class ElfOptionalRaceChoicePanel extends javax.swing.JPanel implements La
             lvLanguagesMap.put(1, lvLanguagesList);
 
             lvChoiceValues.setmLanguages(lvLanguagesMap);
+
+            ArrayList<Spell> lvSpellsList = new ArrayList<>();
+            HashMap<Integer, ArrayList<Spell>> lvSpellsMap = new HashMap<>();
+            
+            if(!"".equals(cantripField.getText()))
+                lvSpellsList.add(SpellXmlParser.getSpellListBySpellName(cantripField.getText()));
+            
+            lvSpellsMap.put(1, lvSpellsList);
+            lvChoiceValues.setmSpells(lvSpellsMap);
+            
+
         }
 
         return lvChoiceValues;

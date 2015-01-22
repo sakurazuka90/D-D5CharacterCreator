@@ -24,6 +24,13 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class SpellXmlParser extends DefaultHandler {
 
+    /**
+     * Zwraca listę zaklęć podanej klasy i danego poziomu.
+     *
+     * @param pmClass
+     * @param lvLevel
+     * @return
+     */
     public static ArrayList<Spell> getSpellListByClassAndLevel(String pmClass, Integer lvLevel) {
         ArrayList<Spell> lvSpellList = new ArrayList<>();
 
@@ -33,7 +40,6 @@ public class SpellXmlParser extends DefaultHandler {
         DocumentBuilder builder = null;
         try {
             builder = builderFactory.newDocumentBuilder();
-            System.out.println(System.getProperty("user.dir"));
             Document lvDocument = builder.parse(new FileInputStream(System.getProperty("user.dir") + "/res/spells.xml"));
             lvDocument.normalize();
             //NodeList lvDocumentList = lvDocument.getElementsByTagName("Spell");
@@ -41,11 +47,10 @@ public class SpellXmlParser extends DefaultHandler {
             XPathFactory xPathfactory = XPathFactory.newInstance();
             XPath xpath = xPathfactory.newXPath();
             XPathExpression expr = xpath.compile("/Spell_List/Spell[Level[@Class='" + pmClass + "' and @Value='" + lvLevel + "']]");
-            
+
             NodeList nl = (NodeList) expr.evaluate(lvDocument, XPathConstants.NODESET);
-            
-            for(int i = 0; i< nl.getLength(); i++)
-            {
+
+            for (int i = 0; i < nl.getLength(); i++) {
                 Element lvSpell = (Element) nl.item(i);
                 //System.out.print(((Element)lvSpell.getElementsByTagName("Name").item(0)).getTextContent());
                 lvSpellList.add(new Spell(lvSpell));
@@ -56,6 +61,32 @@ public class SpellXmlParser extends DefaultHandler {
         }
 
         return lvSpellList;
+    }
+
+    public static Spell getSpellListBySpellName(String pmSpellName) {
+        Spell lvSpell = null;
+
+        //parser xml
+        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = null;
+        try {
+            builder = builderFactory.newDocumentBuilder();
+            Document lvDocument = builder.parse(new FileInputStream(System.getProperty("user.dir") + "/res/spells.xml"));
+            lvDocument.normalize();
+
+            XPathFactory xPathfactory = XPathFactory.newInstance();
+            XPath xpath = xPathfactory.newXPath();
+            XPathExpression expr = xpath.compile("/Spell_List/Spell[Name[text()='"+pmSpellName+"']]");
+
+            NodeList nl = (NodeList) expr.evaluate(lvDocument, XPathConstants.NODESET);
+            if(nl.getLength() > 0)
+            lvSpell = new Spell((Element) nl.item(0));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return lvSpell;
     }
 
 }
