@@ -10,6 +10,7 @@ import com.blogspot.gameeaterpl.enums.ArmorTypes;
 import com.blogspot.gameeaterpl.enums.DamageType;
 import com.blogspot.gameeaterpl.enums.Languages;
 import com.blogspot.gameeaterpl.enums.MartialWeapons;
+import com.blogspot.gameeaterpl.enums.SimpleWeapons;
 import com.blogspot.gameeaterpl.enums.Skills;
 import com.blogspot.gameeaterpl.enums.Tools;
 import com.blogspot.gameeaterpl.mechanics.AutomaterAttack;
@@ -23,29 +24,29 @@ import java.util.Map.Entry;
  * @author Sakurazuka
  */
 public abstract class CharacterPart {
-    
-    protected HashMap<Integer,ArrayList<AutomaterAttack>> mAttacks;
-    protected HashMap<Integer,ArrayList<AbilityIncrease>> mAbilities;
-    protected HashMap<Integer,ArrayList<Skills>> mSkills;
-    protected HashMap<Integer,ArrayList<SpecialAbility>> mSpecialAbilities;
-    protected HashMap<Integer,ArrayList<DamageType>> mResistances;
-    protected HashMap<Integer,ArrayList<CharacterTextFeature>> mFeatures;
-    protected HashMap<Integer,ArrayList<Languages>> mLanguages;
-    protected HashMap<Integer,ArrayList<Tools>> mTools;
-    protected HashMap<Integer,ArrayList<MartialWeapons>> mMartialWeapons;
-    protected HashMap<Integer,ArrayList<ArmorTypes>> mArmorTypes;
-    protected HashMap<Integer,ArrayList<DamageFormula>> mHitPoints;
-    protected HashMap<Integer,ArrayList<Spell>> mSpells;
 
-    protected CharacterPart()
-    {
+    protected HashMap<Integer, ArrayList<AutomaterAttack>> mAttacks;
+    protected HashMap<Integer, ArrayList<AbilityIncrease>> mAbilities;
+    protected HashMap<Integer, ArrayList<Skills>> mSkills;
+    protected HashMap<Integer, ArrayList<SpecialAbility>> mSpecialAbilities;
+    protected HashMap<Integer, ArrayList<DamageType>> mResistances;
+    protected HashMap<Integer, ArrayList<CharacterTextFeature>> mFeatures;
+    protected HashMap<Integer, ArrayList<Languages>> mLanguages;
+    protected HashMap<Integer, ArrayList<Tools>> mTools;
+    protected HashMap<Integer, ArrayList<SimpleWeapons>> mSimpleWeapons;
+    protected HashMap<Integer, ArrayList<MartialWeapons>> mMartialWeapons;
+    protected HashMap<Integer, ArrayList<ArmorTypes>> mArmorTypes;
+    protected HashMap<Integer, ArrayList<DamageFormula>> mHitPoints;
+    protected HashMap<Integer, ArrayList<Spell>> mSpells;
+
+    protected CharacterPart() {
         initializeMaps();
     }
-    
-    protected CharacterPart(HashMap<Integer, ArrayList<AutomaterAttack>> pmAttacks, HashMap<Integer, ArrayList<AbilityIncrease>> pmAbilities, HashMap<Integer, ArrayList<Skills>> pmSkills, HashMap<Integer, ArrayList<SpecialAbility>> pmSpecialAbilities, HashMap<Integer, ArrayList<DamageType>> pmResistances, HashMap<Integer, ArrayList<CharacterTextFeature>> pmFeatures, HashMap<Integer, ArrayList<Languages>> pmLanguages, HashMap<Integer,ArrayList<MartialWeapons>> pmMartialWeapons, HashMap<Integer,ArrayList<ArmorTypes>> pmArmorTypes, HashMap<Integer,ArrayList<DamageFormula>> pmHitPoints) {
-        
+
+    protected CharacterPart(HashMap<Integer, ArrayList<AutomaterAttack>> pmAttacks, HashMap<Integer, ArrayList<AbilityIncrease>> pmAbilities, HashMap<Integer, ArrayList<Skills>> pmSkills, HashMap<Integer, ArrayList<SpecialAbility>> pmSpecialAbilities, HashMap<Integer, ArrayList<DamageType>> pmResistances, HashMap<Integer, ArrayList<CharacterTextFeature>> pmFeatures, HashMap<Integer, ArrayList<Languages>> pmLanguages, HashMap<Integer, ArrayList<MartialWeapons>> pmMartialWeapons, HashMap<Integer, ArrayList<ArmorTypes>> pmArmorTypes, HashMap<Integer, ArrayList<DamageFormula>> pmHitPoints) {
+
         initializeMaps();
-        
+
         this.mAttacks = pmAttacks;
         this.mAbilities = pmAbilities;
         this.mSkills = pmSkills;
@@ -57,26 +58,22 @@ public abstract class CharacterPart {
         this.mArmorTypes = pmArmorTypes;
         this.mHitPoints = pmHitPoints;
     }
-    
-    protected String getTestString()
-    {
+
+    protected String getTestString() {
         StringBuilder lvBuilder = new StringBuilder();
-        
+
         lvBuilder.append("Tools: \n");
-        for(Entry lvEntry : mTools.entrySet())
-        {
+        for (Entry lvEntry : mTools.entrySet()) {
             lvBuilder.append(lvEntry.getKey()).append(":");
-            
-            for(Tools lvTool : (ArrayList<Tools>)lvEntry.getValue())
-            {
+
+            for (Tools lvTool : (ArrayList<Tools>) lvEntry.getValue()) {
                 lvBuilder.append(lvTool.toString()).append("\n");
             }
         }
         return lvBuilder.toString();
     }
-    
-    private void initializeMaps()
-    {
+
+    private void initializeMaps() {
         this.mAttacks = new HashMap<>();
         this.mAbilities = new HashMap<>();
         this.mSkills = new HashMap<>();
@@ -85,6 +82,7 @@ public abstract class CharacterPart {
         this.mFeatures = new HashMap<>();
         this.mLanguages = new HashMap<>();
         this.mTools = new HashMap<>();
+        this.mSimpleWeapons = new HashMap<>();
         this.mMartialWeapons = new HashMap<>();
         this.mArmorTypes = new HashMap<>();
         this.mHitPoints = new HashMap<>();
@@ -186,10 +184,13 @@ public abstract class CharacterPart {
     public void setmSpells(HashMap<Integer, ArrayList<Spell>> mSpells) {
         this.mSpells = mSpells;
     }
-    
-    
-    
-    
-    
-    
+
+    public HashMap<Integer, ArrayList<SimpleWeapons>> getmSimpleWeapons() {
+        return mSimpleWeapons;
+    }
+
+    public void setmSimpleWeapons(HashMap<Integer, ArrayList<SimpleWeapons>> mSimpleWeapons) {
+        this.mSimpleWeapons = mSimpleWeapons;
+    }
+
 }

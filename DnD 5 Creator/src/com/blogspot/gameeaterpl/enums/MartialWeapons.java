@@ -18,7 +18,8 @@ public enum MartialWeapons {
     LONGSWORD("Longsword"),
     SHORTSWORD("Shortsword"),
     LONGBOW("Longbow"),
-    SHORTBOW("Shortbow");
+    RAPIER("Rapier"),
+    HANDCROSSBOW("Hand Crossbow");
     
     private final String mName;
 

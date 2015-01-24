@@ -15,6 +15,7 @@ import com.blogspot.gameeaterpl.enums.Abilities;
 import com.blogspot.gameeaterpl.enums.Languages;
 import com.blogspot.gameeaterpl.enums.MartialWeapons;
 import com.blogspot.gameeaterpl.enums.Races;
+import com.blogspot.gameeaterpl.enums.SimpleWeapons;
 import com.blogspot.gameeaterpl.enums.Sizes;
 import com.blogspot.gameeaterpl.enums.Skills;
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class ElfRace extends CharacterRace {
         mLanguages.put(1, lvLanguages);
 
         ArrayList<MartialWeapons> lvMartialWeapons;
+        ArrayList<SimpleWeapons> lvSimpleWeapons;
         switch (pmSubrace) {
             case HIGHELF:
                 lvAbilities = this.mAbilities.get(1);
@@ -74,12 +76,17 @@ public class ElfRace extends CharacterRace {
 
                 lvMartialWeapons = new ArrayList<>();
 
-                lvMartialWeapons.add(MartialWeapons.SHORTBOW);
                 lvMartialWeapons.add(MartialWeapons.SHORTSWORD);
                 lvMartialWeapons.add(MartialWeapons.LONGBOW);
                 lvMartialWeapons.add(MartialWeapons.LONGSWORD);
 
                 mMartialWeapons.put(1, lvMartialWeapons);
+
+                lvSimpleWeapons = new ArrayList<>();
+                lvSimpleWeapons.add(SimpleWeapons.SHORTBOW);
+
+                mSimpleWeapons.put(1, lvSimpleWeapons);
+
                 break;
             case WOODELF:
                 lvAbilities = this.mAbilities.get(1);
@@ -89,12 +96,16 @@ public class ElfRace extends CharacterRace {
 
                 lvMartialWeapons = new ArrayList<>();
 
-                lvMartialWeapons.add(MartialWeapons.SHORTBOW);
                 lvMartialWeapons.add(MartialWeapons.SHORTSWORD);
                 lvMartialWeapons.add(MartialWeapons.LONGBOW);
                 lvMartialWeapons.add(MartialWeapons.LONGSWORD);
 
                 mMartialWeapons.put(1, lvMartialWeapons);
+
+                lvSimpleWeapons = new ArrayList<>();
+                lvSimpleWeapons.add(SimpleWeapons.SHORTBOW);
+
+                mSimpleWeapons.put(1, lvSimpleWeapons);
 
                 mSpeed += 5;
 
@@ -110,20 +121,27 @@ public class ElfRace extends CharacterRace {
                 mAbilities.put(1, lvAbilities);
 
                 mDarkVision += 60;
-                
+
                 ArrayList<Spell> lvSpellsLvl0 = new ArrayList<>();
                 ArrayList<Spell> lvSpellsLvl1 = new ArrayList<>();
                 ArrayList<Spell> lvSpellsLvl2 = new ArrayList<>();
-                
+
                 lvSpellsLvl0.add(SpellXmlParser.getSpellListBySpellName("Dancing Lights"));
                 lvSpellsLvl1.add(SpellXmlParser.getSpellListBySpellName("Faerie Fire"));
                 lvSpellsLvl2.add(SpellXmlParser.getSpellListBySpellName("Darkness"));
-                
+
                 this.mSpells.put(1, lvSpellsLvl0);
                 this.mSpells.put(3, lvSpellsLvl1);
                 this.mSpells.put(5, lvSpellsLvl2);
 
-                
+                lvMartialWeapons = new ArrayList<>();
+
+                lvMartialWeapons.add(MartialWeapons.SHORTSWORD);
+                lvMartialWeapons.add(MartialWeapons.RAPIER);
+                lvMartialWeapons.add(MartialWeapons.HANDCROSSBOW);
+
+                mMartialWeapons.put(1, lvMartialWeapons);
+
                 break;
         }
     }
